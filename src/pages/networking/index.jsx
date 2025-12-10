@@ -230,12 +230,50 @@ export default function Networking() {
               02 — Addressing
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              DNS Resolution & IP
+              IP/DNS Basics, TTL & Geo-Routing
             </h2>
             <p className="text-lg text-slate-600 max-w-3xl">
               How domain names become IP addresses. The phonebook of the
               internet.
             </p>
+          </div>
+
+          {/* Why/How/When/Trade-offs - DNS */}
+          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-amber-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why This Matters
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Every request starts with finding the server. Performance depends on routing users to the closest healthy node. DNS is the foundation of distributed systems.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How It Works
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  DNS records (A, CNAME, NS), Anycast IP for geo-routing, and TTL for caching. Resolver queries flow: Client → Root → TLD → Authoritative NS.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Use
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Designing global systems or debugging connectivity/latency issues. Essential for multi-region deployments and failover strategies.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Low TTL = fresher data but higher DNS load/latency. High TTL = better caching but risk of stale endpoints during failover.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 mb-8 text-white relative overflow-hidden">
@@ -478,8 +516,11 @@ export default function Networking() {
               03 — Protocols
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              TCP vs UDP
+              TCP vs UDP: Transport Protocol Trade-offs
             </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mb-6">
+              Understanding the fundamental difference between reliable and fast transport.
+            </p>
             <div className="flex gap-4">
               <button
                 onClick={() => setProtocol("tcp")}
@@ -493,6 +534,44 @@ export default function Networking() {
               >
                 UDP (Fast)
               </button>
+            </div>
+          </div>
+
+          {/* Why/How/When/Trade-offs - TCP/UDP */}
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why This Matters
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Protocols dictate performance. TCP is reliable but slow; UDP is fast but unreliable. Choosing wrong protocol can make or break real-time applications.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-indigo-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How To Choose
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Use TCP for data integrity (web, email, file transfer). Use UDP for speed-critical apps (gaming, streaming, VoIP) where occasional packet loss is acceptable.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Use
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  TCP: REST APIs, databases, file transfers. UDP: Video streaming, online gaming, DNS lookups, real-time monitoring.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  TCP: Guaranteed delivery but higher latency. UDP: Fast but requires custom reliability logic. QUIC (HTTP/3) gets best of both.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -670,6 +749,44 @@ export default function Networking() {
             </p>
           </div>
 
+          {/* Why/How/When/Trade-offs - HTTP Evolution */}
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why Evolution Matters
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  HTTP/2+3 fix head-of-line blocking and improve performance significantly. Modern web apps need these protocols for optimal user experience.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How To Implement
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Use HTTP/2 for multiplexing over TCP; HTTP/3 (QUIC) for lossy networks. Offload TLS at load balancer to save app server CPU.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Upgrade
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  High-traffic web apps benefit from HTTP/2. Mobile apps and video streaming should use HTTP/3. Most CDNs support both automatically.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-orange-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  HTTP/3 requires UDP support (some firewalls block it). HTTP/2 still uses TCP, so TCP head-of-line blocking remains. Migration requires infrastructure updates.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
               <div className="text-2xl font-bold text-slate-300 mb-2">1997</div>
@@ -745,6 +862,44 @@ export default function Networking() {
               Understand how CDNs dramatically reduce latency by caching content
               closer to users. See it in action with our interactive demo.
             </p>
+          </div>
+
+          {/* Why/How/When/Trade-offs - CDN */}
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why CDNs Are Critical
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Serve static content from the edge (close to user) to reduce latency and origin load. Can improve performance by 80-90% for global audiences.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How To Choose
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Pull (fetch on miss) for automation and dynamic content. Push (upload) for control and static sites. Invalidate via TTL or explicit purge.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-indigo-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Use
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Serving images, CSS, JS, or video to a distributed audience. Essential for media sites, e-commerce, and global SaaS applications.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Pull is easier but has "cold start" latency on first request. Push ensures availability but adds deployment complexity and storage costs.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Interactive CDN Demo */}
@@ -1189,6 +1344,44 @@ export default function Networking() {
             </p>
           </div>
 
+          {/* Why/How/When/Trade-offs - Load Balancing */}
+          <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-cyan-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why You Need Both
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Scale beyond one server and secure the internal network. Load balancers distribute traffic; reverse proxies add security, caching, and SSL termination.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How To Implement
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  L4 LB (IP+Port) for raw speed and simple routing. L7 LB (HTTP headers/path) for smart routing by URL, user ID, or A/B testing.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Deploy
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Always, for production systems requiring availability and scale. Start with managed solutions like ALB, NLB, or cloud load balancers.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  L7 offers smarter routing (e.g., by user ID) but is more CPU-intensive than L4. L4 is faster but can't inspect HTTP content for routing decisions.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-white border-2 border-indigo-100 rounded-xl p-8 shadow-sm">
               <h3 className="text-2xl font-bold text-indigo-900 mb-4">
@@ -1438,8 +1631,49 @@ export default function Networking() {
               06 — Optimizations
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Performance Toolbox
+              Performance Toolbox: TLS, Connection Pooling & Compression
             </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mb-6">
+              Essential optimization techniques to reduce latency and save resources.
+            </p>
+          </div>
+
+          {/* Why/How/When/Trade-offs - Optimizations */}
+          <div className="bg-gradient-to-br from-slate-50 to-gray-50 border-2 border-slate-300 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">💡</span> Why Optimize
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Every millisecond counts at scale. TLS termination saves CPU, connection pooling reduces latency, and compression saves 70%+ bandwidth.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">🛠️</span> How To Apply
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Offload TLS at load balancer. Pool DB connections at application layer. Enable Gzip/Brotli compression for text assets (JSON, HTML, CSS).
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⏰</span> When To Implement
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  Early in production for TLS and compression. Add connection pooling when DB becomes a bottleneck. Monitor and optimize continuously.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
+                  <span className="text-2xl">⚖️</span> Trade-offs
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  TLS termination requires secure internal network. Connection pooling adds complexity. Compression uses CPU but saves bandwidth—measure impact.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
