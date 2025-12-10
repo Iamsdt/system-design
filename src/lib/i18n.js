@@ -18,6 +18,10 @@ i18n
 
     debug: import.meta.env.DEV,
 
+    backend: {
+      // Ensure translation JSON is loaded from the correct base URL in production
+      loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
+    },
     interpolation: {
       escapeValue: false, // react already safes from xss
     },
