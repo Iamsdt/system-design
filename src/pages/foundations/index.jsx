@@ -92,83 +92,373 @@ export default function Foundations() {
         </div>
       </section>
 
-      {/* Interactive Demos Section - Moved here for better visibility */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Interactive Calculators & Demos
+      
+
+      <div className="container mx-auto px-4 py-16 max-w-7xl">
+        {/* ============================================ */}
+        {/* SECTION 0: What is System Design? */}
+        {/* ============================================ */}
+        <section
+          ref={(element) => (sectionsReference.current[0] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <div className="mb-12">
+            <div className="inline-block">
+              <div className="text-sm font-bold text-emerald-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-sm">
+                  00
+                </span>
+                START HERE
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">
+              What is System Design?
             </h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              Hands-on tools to estimate system capacity, availability, and
-              understand core trade-offs
+            <p className="text-xl text-slate-600 max-w-4xl leading-relaxed">
+              If you're new to system design, start here. This section explains the fundamentals in simple terms—no prior experience needed.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div>
-              <CapacityPlanner />
-            </div>
-            <div>
-              <AvailabilityCalculator />
-            </div>
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 shadow-lg">
-              <div className="flex items-start gap-3 mb-4">
-                <div className="text-3xl">📊</div>
-                <div>
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">
-                    Why These Calculators Matter
-                  </h4>
-                  <p className="text-sm text-slate-700 leading-relaxed mb-3">
-                    Even a 0.1% difference in availability (99.9% vs 99.99%)
-                    maps to significant downtime. Quick estimates guide capacity
-                    decisions and explain trade-offs under interview pressure.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-3 text-sm text-slate-700">
-                <div className="bg-white/60 rounded-lg p-3">
-                  <p className="font-semibold text-blue-900 mb-1">
-                    💡 SLO Example:
-                  </p>
-                  <p>
-                    99.95% uptime ≈ ~4.38 hours downtime/year. Use redundancy to
-                    improve it.
-                  </p>
-                </div>
-
-                <div className="bg-white/60 rounded-lg p-3">
-                  <p className="font-semibold text-blue-900 mb-1">
-                    🎯 When to Use:
-                  </p>
-                  <p>
-                    Design interviews, early architecture planning, or migration
-                    preparation.
-                  </p>
-                </div>
-
-                <div className="bg-white/60 rounded-lg p-3">
-                  <p className="font-semibold text-blue-900 mb-1">
-                    ⚠️ Trade-offs:
-                  </p>
-                  <p>
-                    These are heuristics—production varies. Build margin and
-                    validate with tests.
-                  </p>
-                </div>
+          {/* The Big Picture */}
+          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-8 mb-8">
+            <div className="flex items-start gap-4">
+              <div className="text-5xl">🏗️</div>
+              <div>
+                <h3 className="text-3xl font-bold text-emerald-900 mb-4">
+                  System Design in Simple Terms
+                </h3>
+                <p className="text-lg text-slate-700 leading-relaxed mb-4">
+                  Imagine you're building a house. You don't just start hammering nails randomly—you need a <strong>blueprint</strong>. 
+                  System design is like creating that blueprint, but for software applications.
+                </p>
+                <p className="text-lg text-slate-700 leading-relaxed mb-4">
+                  It's the process of defining the <strong>architecture</strong>, <strong>components</strong>, <strong>modules</strong>, 
+                  and <strong>data flow</strong> of a system to satisfy specific requirements. It answers questions like:
+                </p>
+                <ul className="space-y-2 ml-6">
+                  {[
+                    "How should we structure our application so it can handle millions of users?",
+                    "Where should we store data, and how should we organize it?",
+                    "How do different parts of the system communicate with each other?",
+                    "What happens when something breaks? How do we keep things running?",
+                    "How do we make sure the system is fast, secure, and reliable?"
+                  ].map((q, index) => (
+                    <li key={index} className="text-slate-700 flex items-start gap-2">
+                      <span className="text-emerald-600 font-bold mt-1">•</span>
+                      <span>{q}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <div className="container mx-auto px-4 py-16 max-w-7xl">
+          {/* Real-World Analogy */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-white border-2 border-blue-200 rounded-2xl p-8 shadow-lg">
+              <div className="text-4xl mb-4">🏪</div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                Think of a Restaurant
+              </h3>
+              <p className="text-slate-700 leading-relaxed mb-4">
+                A restaurant is a <strong>system</strong>. It has:
+              </p>
+              <ul className="space-y-3">
+                {[
+                  { icon: "👥", label: "Customers", desc: "(like users of your app)" },
+                  { icon: "📋", label: "Menu", desc: "(like your app's features/API)" },
+                  { icon: "👨‍🍳", label: "Kitchen", desc: "(where the work happens—your servers)" },
+                  { icon: "🗄️", label: "Storage/Fridge", desc: "(your database)" },
+                  { icon: "🚚", label: "Suppliers", desc: "(external services/APIs)" },
+                  { icon: "🔧", label: "Processes", desc: "(how orders flow, food is prepared)" }
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <span className="text-2xl">{item.icon}</span>
+                    <div>
+                      <span className="font-semibold text-slate-900">{item.label}</span>
+                      <span className="text-slate-600 text-sm ml-2">{item.desc}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  <strong>System design</strong> is deciding: How many chefs do we need? How do we organize the kitchen? 
+                  What if 1000 customers show up at once? What if the fridge breaks?
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border-2 border-purple-200 rounded-2xl p-8 shadow-lg">
+              <div className="text-4xl mb-4">📱</div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                Real Software Example: Instagram
+              </h3>
+              <p className="text-slate-700 leading-relaxed mb-4">
+                When you post a photo on Instagram, here's what happens behind the scenes:
+              </p>
+              <div className="space-y-4">
+                {[
+                  { 
+                    step: "1", 
+                    title: "Upload", 
+                    desc: "Your photo is sent to Instagram's servers via the internet" 
+                  },
+                  { 
+                    step: "2", 
+                    title: "Processing", 
+                    desc: "Servers compress & optimize the image, create multiple sizes (thumbnail, full-size)" 
+                  },
+                  { 
+                    step: "3", 
+                    title: "Storage", 
+                    desc: "Images saved to cloud storage (e.g., AWS S3). Post metadata saved to database" 
+                  },
+                  { 
+                    step: "4", 
+                    title: "Distribution", 
+                    desc: "Notification sent to your followers. Post added to their feeds" 
+                  },
+                  { 
+                    step: "5", 
+                    title: "Retrieval", 
+                    desc: "When followers open the app, they fetch the post from nearby servers (CDN)" 
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
+                      {item.step}
+                    </div>
+                    <div>
+                      <div className="font-semibold text-slate-900">{item.title}</div>
+                      <div className="text-sm text-slate-600">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 p-4 bg-purple-50 rounded-lg">
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  <strong>System design</strong> planned all of this: where to store images, how to handle millions 
+                  of uploads per day, how to make loading fast worldwide, what to do if servers crash.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Why Learn System Design */}
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 text-white mb-8">
+            <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+              <span className="text-4xl">🎯</span>
+              Why Should You Learn System Design?
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  icon: "💼",
+                  title: "Career Growth",
+                  desc: "System design interviews are required for senior engineer roles at top tech companies (Google, Amazon, Meta, Netflix, etc.)"
+                },
+                {
+                  icon: "🧠",
+                  title: "Better Decision Making",
+                  desc: "You'll understand why your team makes certain architectural choices and contribute to technical discussions"
+                },
+                {
+                  icon: "🔧",
+                  title: "Build Scalable Apps",
+                  desc: "Learn to create applications that don't crash when traffic increases—crucial for real-world projects"
+                },
+                {
+                  icon: "🌐",
+                  title: "Understand the Internet",
+                  desc: "Finally understand how your favorite apps (YouTube, Twitter, WhatsApp) actually work under the hood"
+                }
+              ].map((item, index) => (
+                <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-5">
+                  <div className="text-3xl mb-3">{item.icon}</div>
+                  <div className="font-bold text-xl mb-2">{item.title}</div>
+                  <p className="text-sm text-white/90 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Key Concepts - Glossary */}
+          <div className="bg-white border-2 border-slate-200 rounded-2xl shadow-xl overflow-hidden mb-8">
+            <div className="bg-gradient-to-r from-slate-700 to-slate-900 px-8 py-6">
+              <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                <span className="text-3xl">📚</span>
+                Essential System Design Glossary
+              </h3>
+              <p className="text-slate-300 mt-2">Key terms every beginner should know</p>
+            </div>
+
+            <div className="p-8 grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  term: "Server",
+                  definition: "A powerful computer that stores your application and serves it to users. When you visit a website, you're connecting to a server.",
+                  example: "Like a waiter in a restaurant who takes your order and brings your food"
+                },
+                {
+                  term: "Database",
+                  definition: "Where your application stores data permanently (user accounts, posts, messages, etc.). Think of it as a digital filing cabinet.",
+                  example: "Instagram stores your photos and profile info in databases"
+                },
+                {
+                  term: "Client",
+                  definition: "The device/application a user uses to access your system (mobile app, web browser, desktop app).",
+                  example: "Your phone's Instagram app is a client"
+                },
+                {
+                  term: "API (Application Programming Interface)",
+                  definition: "A set of rules that lets different software talk to each other. Like a menu in a restaurant—it shows what you can order.",
+                  example: "When Twitter's app gets your tweets, it calls Twitter's API"
+                },
+                {
+                  term: "Load Balancer",
+                  definition: "Distributes incoming requests across multiple servers so no single server gets overwhelmed.",
+                  example: "Like a host at a restaurant directing customers to available tables"
+                },
+                {
+                  term: "Cache",
+                  definition: "Temporary storage for frequently accessed data to make things faster. Stores copies of data closer to users.",
+                  example: "Your browser caches images so pages load faster on repeat visits"
+                },
+                {
+                  term: "Latency",
+                  definition: "The delay/time it takes for data to travel from point A to point B. Lower is better.",
+                  example: "Time between clicking a link and the page starting to load"
+                },
+                {
+                  term: "Throughput",
+                  definition: "How much data or how many requests a system can handle in a given time period.",
+                  example: "A highway's throughput is how many cars pass through per hour"
+                },
+                {
+                  term: "Scalability",
+                  definition: "The ability of a system to handle growth (more users, more data) without breaking or slowing down.",
+                  example: "Netflix scaled from thousands to millions of users"
+                },
+                {
+                  term: "Availability",
+                  definition: "The percentage of time a system is operational and accessible. Usually measured in 'nines' (99%, 99.9%, etc.).",
+                  example: "99.9% availability = only 8.76 hours downtime per year"
+                },
+                {
+                  term: "Redundancy",
+                  definition: "Having backup copies of components so if one fails, another takes over. Critical for reliability.",
+                  example: "Airlines have backup pilots; systems have backup servers"
+                },
+                {
+                  term: "Microservices",
+                  definition: "Breaking a large application into smaller, independent services that work together.",
+                  example: "Netflix has separate services for search, recommendations, video streaming"
+                },
+                {
+                  term: "Monolithic",
+                  definition: "The opposite of microservices—the entire application is one big codebase. Simpler but harder to scale.",
+                  example: "Like a Swiss Army knife vs. a toolbox of specialized tools"
+                },
+                {
+                  term: "CDN (Content Delivery Network)",
+                  definition: "A network of servers distributed globally that serve content from locations closest to users for faster load times.",
+                  example: "Netflix uses CDN so viewers in Japan and USA both get fast video"
+                },
+                {
+                  term: "Sharding",
+                  definition: "Splitting a database into smaller pieces (shards) distributed across multiple servers to handle large datasets.",
+                  example: "User data split by region: US users on one shard, EU users on another"
+                },
+                {
+                  term: "Replication",
+                  definition: "Creating copies of data across multiple servers for backup and faster access.",
+                  example: "Your email exists on multiple servers so it's not lost if one fails"
+                }
+              ].map((item, index) => (
+                <div key={index} className="border-l-4 border-indigo-500 pl-4 py-2">
+                  <div className="font-bold text-lg text-slate-900 mb-2">
+                    {item.term}
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed mb-2">
+                    {item.definition}
+                  </p>
+                  <div className="bg-indigo-50 rounded-lg p-3 mt-2">
+                    <div className="text-xs font-semibold text-indigo-900 mb-1">
+                      💡 Example:
+                    </div>
+                    <div className="text-xs text-slate-700">{item.example}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* The Learning Path */}
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+              <span className="text-3xl">🗺️</span>
+              Your Learning Journey
+            </h3>
+            <p className="text-slate-700 mb-6 leading-relaxed">
+              System design can feel overwhelming at first, but break it down into steps:
+            </p>
+            <div className="space-y-4">
+              {[
+                {
+                  phase: "Phase 1",
+                  title: "Learn the Basics",
+                  items: ["Understand key concepts (client, server, database, API)", "Learn about scalability, latency, throughput", "Study common patterns (caching, load balancing)"],
+                  duration: "1-2 weeks"
+                },
+                {
+                  phase: "Phase 2",
+                  title: "Study Components",
+                  items: ["Databases (SQL vs NoSQL)", "Caching strategies (Redis, Memcached)", "Message queues (RabbitMQ, Kafka)", "Storage (object storage, file systems)"],
+                  duration: "2-3 weeks"
+                },
+                {
+                  phase: "Phase 3",
+                  title: "Practice Designs",
+                  items: ["Design simple systems (URL shortener, pastebin)", "Progress to medium systems (Twitter, Instagram)", "Try complex systems (YouTube, Uber, Netflix)"],
+                  duration: "4-8 weeks"
+                },
+                {
+                  phase: "Phase 4",
+                  title: "Real-World Application",
+                  items: ["Build a project applying what you learned", "Read about real system architectures (engineering blogs)", "Practice mock interviews"],
+                  duration: "Ongoing"
+                }
+              ].map((item, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 border-l-4 border-blue-600">
+                  <div className="flex items-center justify-between mb-3">
+                    <div>
+                      <span className="text-xs font-bold text-blue-600 uppercase">{item.phase}</span>
+                      <h4 className="text-xl font-bold text-slate-900">{item.title}</h4>
+                    </div>
+                    <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                      {item.duration}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.items.map((listItem, idx) => (
+                      <li key={idx} className="text-sm text-slate-700 flex items-start gap-2">
+                        <span className="text-blue-600 mt-1">✓</span>
+                        <span>{listItem}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ============================================ */}
         {/* SECTION 1: Interview Flow & Requirements Mapping */}
         {/* ============================================ */}
         <section
-          ref={(element) => (sectionsReference.current[0] = element)}
+          ref={(element) => (sectionsReference.current[1] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -613,7 +903,7 @@ export default function Foundations() {
         {/* SECTION 2: Performance vs Scalability | Latency vs Throughput */}
         {/* ============================================ */}
         <section
-          ref={(element) => (sectionsReference.current[1] = element)}
+          ref={(element) => (sectionsReference.current[2] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -883,7 +1173,7 @@ export default function Foundations() {
         {/* SECTION 3: Consistency & CAP Theorem */}
         {/* ============================================ */}
         <section
-          ref={(element) => (sectionsReference.current[2] = element)}
+          ref={(element) => (sectionsReference.current[3] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -967,7 +1257,7 @@ export default function Foundations() {
         {/* SECTION 4: Vertical vs Horizontal Scaling */}
         {/* ============================================ */}
         <section
-          ref={(element) => (sectionsReference.current[3] = element)}
+          ref={(element) => (sectionsReference.current[4] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -1123,6 +1413,77 @@ export default function Foundations() {
             })()}
           </div>
         </section>
+
+        {/* Interactive Demos Section - Moved here for better visibility */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+              Interactive Calculators & Demos
+            </h2>
+            <p className="text-lg text-slate-600 mx-auto">
+              Hands-on tools to estimate system capacity, availability, and
+              understand core trade-offs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div>
+              <CapacityPlanner />
+            </div>
+            <div>
+              <AvailabilityCalculator />
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 shadow-lg">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="text-3xl">📊</div>
+                <div>
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">
+                    Why These Calculators Matter
+                  </h4>
+                  <p className="text-sm text-slate-700 leading-relaxed mb-3">
+                    Even a 0.1% difference in availability (99.9% vs 99.99%)
+                    maps to significant downtime. Quick estimates guide capacity
+                    decisions and explain trade-offs under interview pressure.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-3 text-sm text-slate-700">
+                <div className="bg-white/60 rounded-lg p-3">
+                  <p className="font-semibold text-blue-900 mb-1">
+                    💡 SLO Example:
+                  </p>
+                  <p>
+                    99.95% uptime ≈ ~4.38 hours downtime/year. Use redundancy to
+                    improve it.
+                  </p>
+                </div>
+
+                <div className="bg-white/60 rounded-lg p-3">
+                  <p className="font-semibold text-blue-900 mb-1">
+                    🎯 When to Use:
+                  </p>
+                  <p>
+                    Design interviews, early architecture planning, or migration
+                    preparation.
+                  </p>
+                </div>
+
+                <div className="bg-white/60 rounded-lg p-3">
+                  <p className="font-semibold text-blue-900 mb-1">
+                    ⚠️ Trade-offs:
+                  </p>
+                  <p>
+                    These are heuristics—production varies. Build margin and
+                    validate with tests.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
         {/* Back to Home */}
         <section className="text-center py-12">

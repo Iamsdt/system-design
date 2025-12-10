@@ -21,6 +21,22 @@ export default function Networking() {
   // idle, request, origin-fetch, edge-store, delivered
   const [isCacheHit, setIsCacheHit] = useState(false)
 
+  // Load Balancer Demo State
+  const [lbAlgo, setLbAlgo] = useState("round-robin")
+  const [servers, setServers] = useState([
+    { id: "A", weight: 1, connections: 0, responseTime: 400, up: true },
+    { id: "B", weight: 2, connections: 0, responseTime: 250, up: true },
+    { id: "C", weight: 1, connections: 0, responseTime: 700, up: true },
+  ])
+  const [requestLog, setRequestLog] = useState([])
+  const rrIndex = useRef(0)
+  const wrrIndex = useRef(0)
+  const [clientIp, setClientIp] = useState("")
+  const routeHistory = useRef([])
+  const [routeHistoryState, setRouteHistoryState] = useState([])
+  const serverColors = ["#60A5FA", "#F97316", "#A78BFA", "#34D399", "#F973A4", "#F59E0B", "#E2E8F0"]
+  const [autoScale, setAutoScale] = useState(false)
+
   // OSI Model Data
   const osiLayers = [
     {
@@ -103,6 +119,189 @@ export default function Networking() {
     return () => observer.disconnect()
   }, [])
 
+  // Build weighted sequence (recomputed on servers change)
+  const buildWeightedSeq = (svs) => {
+    const seq = []
+    svs.forEach((s, idx) => {
+      for (let i = 0; i < Math.max(1, s.weight); i++) seq.push(idx)
+    })
+    return seq
+  }
+
+  // Pick Server by Algorithm
+  const pickServer = (algo, ip) => {
+    const aliveServers = servers
+      .map((s, i) => ({ ...s, index: i }))
+      .filter((s) => s.up)
+    if (aliveServers.length === 0) return null
+
+    switch (algo) {
+      case "round-robin": {
+        const idx = rrIndex.current % aliveServers.length
+        rrIndex.current = (rrIndex.current + 1) % aliveServers.length
+        return aliveServers[idx].index
+      }
+      case "weighted-rr": {
+        const seq = buildWeightedSeq(aliveServers)
+        if (seq.length === 0) return null
+        const idx = wrrIndex.current % seq.length
+        wrrIndex.current = (wrrIndex.current + 1) % seq.length
+        return aliveServers[seq[idx]].index
+      }
+      case "least-connections": {
+        let min = aliveServers[0]
+        aliveServers.forEach((s) => {
+          if (s.connections < min.connections) min = s
+        })
+        return min.index
+      }
+      case "ip-hash": {
+        const ipStr = ip || `${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`
+        let sum = 0
+        for (let i = 0; i < ipStr.length; i++) sum += ipStr.charCodeAt(i)
+        const idx = sum % aliveServers.length
+        return aliveServers[idx].index
+      }
+      case "least-response-time": {
+        let min = aliveServers[0]
+        aliveServers.forEach((s) => {
+          if (s.responseTime < min.responseTime) min = s
+        })
+        return min.index
+      }
+      case "random":
+      default: {
+        const idx = Math.floor(Math.random() * aliveServers.length)
+        return aliveServers[idx].index
+      }
+    }
+  }
+
+  const sendRequest = (options = {}) => {
+    const { ip } = options
+    const serverIndex = pickServer(lbAlgo, ip)
+    if (serverIndex === null || serverIndex === undefined) {
+      setRequestLog((l) => [`No servers available 🛑`, ...l].slice(0, 50))
+      return
+    }
+
+    // Mark connection
+    setServers((prev) =>
+      prev.map((s, idx) => {
+        if (idx === serverIndex) return { ...s, connections: s.connections + 1, hit: true }
+        return s
+      })
+    )
+
+    setRequestLog((prev) => [`${new Date().toLocaleTimeString()} → Routed to ${servers[serverIndex].id} (${lbAlgo})`, ...prev].slice(0, 50))
+    const histItem = { time: Date.now(), serverId: servers[serverIndex].id, serverIndex }
+    routeHistory.current = [histItem, ...routeHistory.current].slice(0, 100)
+    setRouteHistoryState(routeHistory.current)
+
+    // Simulate duration then free connection
+    setTimeout(() => {
+      setServers((prev) =>
+        prev.map((s, idx) => {
+          if (idx === serverIndex) return { ...s, connections: Math.max(0, s.connections - 1) }
+          return s
+        })
+      )
+    }, (servers[serverIndex]?.responseTime || 500) + 0)
+
+    setTimeout(() => {
+      setServers((prev) => prev.map((s, idx) => (idx === serverIndex ? { ...s, hit: false } : s)))
+    }, 400)
+  }
+
+  const sendToServer = (serverIndex) => {
+    if (!servers[serverIndex]?.up) {
+      setRequestLog((prev) => [`${new Date().toLocaleTimeString()} → Server ${servers[serverIndex]?.id} is DOWN (not routed)`, ...prev].slice(0, 50))
+      return
+    }
+    if (serverIndex === null || serverIndex === undefined) return
+    setServers((prev) =>
+      prev.map((s, idx) => {
+        if (idx === serverIndex) return { ...s, connections: s.connections + 1, hit: true }
+        return s
+      })
+    )
+
+    setRequestLog((prev) => [`${new Date().toLocaleTimeString()} → Routed to ${servers[serverIndex].id} (manual)`, ...prev].slice(0, 50))
+    const histItem = { time: Date.now(), serverId: servers[serverIndex].id, serverIndex }
+    routeHistory.current = [histItem, ...routeHistory.current].slice(0, 100)
+    setRouteHistoryState(routeHistory.current)
+
+    setTimeout(() => {
+      setServers((prev) =>
+        prev.map((s, idx) => {
+          if (idx === serverIndex) return { ...s, connections: Math.max(0, s.connections - 1) }
+          return s
+        })
+      )
+    }, (servers[serverIndex]?.responseTime || 500) + 0)
+
+    setTimeout(() => {
+      setServers((prev) => prev.map((s, idx) => (idx === serverIndex ? { ...s, hit: false } : s)))
+    }, 400)
+  }
+
+  const sendMany = (count = 100, delay = 60) => {
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => sendRequest({ ip: clientIp }), i * delay)
+    }
+  }
+
+  // Keep rrIndex/wrrIndex valid after server changes
+  useEffect(() => {
+    const seq = buildWeightedSeq(servers)
+    if (servers.length > 0) rrIndex.current = rrIndex.current % servers.length
+    if (seq.length > 0) wrrIndex.current = wrrIndex.current % seq.length
+  }, [servers])
+
+  // Purge routeHistory items referencing removed servers
+  useEffect(() => {
+    routeHistory.current = routeHistory.current.filter((h) => h.serverIndex < servers.length)
+    setRouteHistoryState(routeHistory.current)
+  }, [servers])
+
+  const addServer = () => {
+    setServers((prev) => {
+      const nextLetter = String.fromCharCode(65 + prev.length)
+      const newServer = {
+        id: nextLetter,
+        weight: 1,
+        connections: 0,
+        responseTime: 300 + Math.floor(Math.random() * 700),
+        up: true,
+      }
+      return [...prev, newServer]
+    })
+  }
+
+  const removeServer = () => {
+    setServers((prev) => {
+      if (prev.length <= 1) return prev
+      const newArr = prev.slice(0, -1)
+      // clamp indices
+      rrIndex.current = newArr.length ? rrIndex.current % newArr.length : 0
+      const seq = buildWeightedSeq(newArr)
+      wrrIndex.current = seq.length ? wrrIndex.current % seq.length : 0
+      return newArr
+    })
+  }
+
+  // Auto-scaling simulation (very simple): if avg connections > 2, add server; if < 0.5 and >1 servers, remove
+  useEffect(() => {
+    if (!autoScale) return
+    const iv = setInterval(() => {
+      const avg = servers.reduce((a, b) => a + b.connections, 0) / Math.max(1, servers.length)
+      // More aggressive thresholds for quicker autoscale
+      if (avg > 0.9) addServer()
+      else if (avg < 0.25 && servers.length > 1) removeServer()
+    }, 1000)
+    return () => clearInterval(iv)
+  }, [autoScale, servers])
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
@@ -119,7 +318,7 @@ export default function Networking() {
               Networking, Delivery & <span className="text-gradient">Edge</span>
             </h1>
 
-            <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-slate-600 mb-8 mx-auto">
               Master the networking fundamentals that power the internet. From
               IP addressing and DNS resolution to CDNs, load balancers, and
               modern protocols. Interactive demos and real-world examples
@@ -575,7 +774,7 @@ export default function Networking() {
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm transition-all duration-500 min-h-[400px]">
+          <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm transition-all duration-500">
             {protocol === "tcp" ? (
               <div className="animate-fade-in">
                 <div className="flex items-center gap-4 mb-6">
@@ -734,7 +933,7 @@ export default function Networking() {
 
         {/* Section 3B: HTTP Evolution */}
         <section
-          ref={(element) => (sectionsReference.current[2.5] = element)}
+          ref={(element) => (sectionsReference.current[3] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <div className="mb-8">
@@ -848,7 +1047,7 @@ export default function Networking() {
 
         {/* Section 4: CDN & Edge (Interactive) */}
         <section
-          ref={(element) => (sectionsReference.current[3] = element)}
+          ref={(element) => (sectionsReference.current[4] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <div className="mb-8">
@@ -1329,7 +1528,7 @@ export default function Networking() {
 
         {/* Section 5: Traffic Control (LB vs Proxy) */}
         <section
-          ref={(element) => (sectionsReference.current[4] = element)}
+          ref={(element) => (sectionsReference.current[5] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <div className="mb-8">
@@ -1436,6 +1635,8 @@ export default function Networking() {
                   📈 <b>Scaling</b>: Add more servers easily.
                 </li>
               </ul>
+
+              
             </div>
           </div>
 
@@ -1555,7 +1756,164 @@ export default function Networking() {
           </div>
 
           {/* Health Checks */}
-          <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
+          {/* Interactive LB Demo (moved) */}
+          <div className="mt-6 border-t pt-6">
+            <h4 className="text-lg font-semibold text-slate-800 mb-3">Interactive Demo</h4>
+
+            <div className="flex items-center gap-3 flex-wrap mb-4">
+              <label className="text-sm text-slate-600">Algorithm</label>
+              <select
+                value={lbAlgo}
+                onChange={(e) => setLbAlgo(e.target.value)}
+                className="px-3 py-2 rounded border border-slate-200"
+              >
+                <option value="round-robin">Round Robin</option>
+                <option value="weighted-rr">Weighted Round Robin</option>
+                <option value="least-connections">Least Connections</option>
+                <option value="ip-hash">IP Hash</option>
+                <option value="least-response-time">Least Response Time</option>
+                <option value="random">Random</option>
+              </select>
+
+              <input
+                type="text"
+                placeholder="Client IP (optional)"
+                value={clientIp}
+                onChange={(e) => setClientIp(e.target.value)}
+                className="px-3 py-2 rounded border border-slate-200"
+              />
+
+              <button
+                onClick={() => sendRequest({ ip: clientIp })}
+                className="px-4 py-2 bg-blue-600 text-white rounded font-semibold hover:bg-blue-500"
+              >
+                Send Request
+              </button>
+
+                  <button
+                    onClick={() => sendMany(10, 60)}
+                    className="px-4 py-2 bg-slate-100 rounded font-semibold border border-slate-200 hover:bg-slate-200"
+                  >
+                    Send 10 Requests
+                  </button>
+                  <button
+                    onClick={() => sendMany(100, 20)}
+                    className="px-4 py-2 bg-slate-100 rounded font-semibold border border-slate-200 hover:bg-slate-200"
+                  >
+                    Send 100 Requests
+                  </button>
+              <button
+                onClick={addServer}
+                className="px-4 py-2 bg-green-100 rounded font-semibold border border-green-200 hover:bg-green-200"
+              >
+                Add Server
+              </button>
+              <button
+                onClick={removeServer}
+                className="px-4 py-2 bg-red-100 rounded font-semibold border border-red-200 hover:bg-red-200"
+              >
+                Remove Server
+              </button>
+              <button
+                onClick={() => setAutoScale((s) => !s)}
+                className={`px-4 py-2 rounded font-semibold border ${autoScale ? "bg-amber-200 border-amber-300" : "bg-slate-100 border-slate-200"}`}
+              >
+                {autoScale ? "Autoscale: On" : "Autoscale: Off"}
+              </button>
+              <div className="px-3 py-1 bg-slate-100 rounded text-sm text-slate-700">
+                Servers: <span className="font-semibold">{servers.length}</span>
+              </div>
+            </div>
+
+            {/* Routing Graph */}
+            <div className="mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <div className="font-semibold">Routing Graph</div>
+                <div className="text-xs text-slate-500">Last {routeHistoryState.length} requests</div>
+              </div>
+              <div className="w-full bg-white border border-slate-200 rounded p-2 overflow-hidden">
+                <svg width="100%" height="40" viewBox={`0 0 ${Math.max(1, routeHistoryState.length) * 12} 40`} preserveAspectRatio="none">
+                  {routeHistoryState.map((h, i) => {
+                    const w = 10
+                    const gap = 2
+                    const x = i * (w + gap)
+                    const color = serverColors[h.serverIndex % serverColors.length] || "#94a3b8"
+                    return (
+                      <rect key={i} x={x} y={5} width={w} height={30} rx={2} ry={2} fill={color} />
+                    )
+                  })}
+                </svg>
+                <div className="flex gap-3 mt-2 flex-wrap text-xs">
+                  {servers.map((s, idx) => (
+                    <div key={s.id} className="flex items-center gap-2">
+                      <div style={{ width: 12, height: 12, backgroundColor: serverColors[idx % serverColors.length] }} className="rounded-full" />
+                      <div className="text-slate-700">{s.id}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 mb-4">
+              {servers.map((s, idx) => (
+                <div
+                  key={s.id}
+                  className={`p-3 rounded-lg border shadow-sm transition-all ${s.up ? "bg-white" : "bg-red-50 border-red-200"} ${s.hit ? "ring-2 ring-blue-400 scale-105" : ""}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="font-bold text-slate-900 text-lg">Server {s.id}</div>
+                    <div className="text-xs text-slate-500">{s.up ? "Up" : "Down"}</div>
+                  </div>
+                  <div className="mb-3 text-sm text-slate-700">Conns: <span className="font-bold">{s.connections}</span></div>
+                  <div className="mb-2 text-sm">
+                    Weight: <span className="font-semibold">{s.weight}</span>
+                    <input
+                      type="range"
+                      min="1"
+                      max="5"
+                      value={s.weight}
+                      onChange={(e) => {
+                        const w = Number(e.target.value)
+                        setServers((prev) => prev.map((ps, pi) => (pi === idx ? { ...ps, weight: w } : ps)))
+                      }}
+                      className="w-full mt-2"
+                    />
+                  </div>
+                  <div className="mb-3 text-sm">Resp: <span className="font-semibold">{s.responseTime}ms</span>
+                    <input
+                      type="range"
+                      min="50"
+                      max="1200"
+                      step="50"
+                      value={s.responseTime}
+                      onChange={(e) => {
+                        const r = Number(e.target.value)
+                        setServers((prev) => prev.map((ps, pi) => (pi === idx ? { ...ps, responseTime: r } : ps)))
+                      }}
+                      className="w-full mt-2"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setServers((prev) => prev.map((ps, pi) => (pi === idx ? { ...ps, up: !ps.up } : ps)))}
+                      className={`px-3 py-1 rounded text-sm ${s.up ? "bg-red-50 border border-red-200 text-red-600" : "bg-green-50 border border-green-200 text-green-700"}`}
+                    >
+                      {s.up ? "Mark Down" : "Mark Up"}
+                    </button>
+                    <button
+                      onClick={() => sendToServer(idx)}
+                      className="px-3 py-1 rounded text-sm bg-blue-50 border border-blue-100 hover:bg-blue-100"
+                    >
+                      Send to {s.id}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Request Log removed from UI to avoid excessive renders; kept requestLog state for debugging */}
+          </div>
+          <div className="bg-white border border-slate-200 rounded-xl p-8 mt-20 shadow-sm">
             <h3 className="text-2xl font-bold text-slate-900 mb-6">
               Health Checks & High Availability
             </h3>
@@ -1623,7 +1981,7 @@ export default function Networking() {
 
         {/* Section 6: Optimizations */}
         <section
-          ref={(element) => (sectionsReference.current[5] = element)}
+          ref={(element) => (sectionsReference.current[6] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <div className="mb-8">
@@ -1677,27 +2035,27 @@ export default function Networking() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-xl">
+            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
               <div className="text-3xl mb-4">🔐</div>
-              <h4 className="font-bold text-lg mb-2">TLS Termination</h4>
+              <h4 className="font-bold text-lg mb-2 text-white">TLS Termination</h4>
               <p className="text-sm text-slate-300">
                 Decrypting HTTPS at the Load Balancer/Proxy instead of the web
                 server. Saves CPU on application servers.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-xl">
+            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
               <div className="text-3xl mb-4">🏊‍♂️</div>
-              <h4 className="font-bold text-lg mb-2">Connection Pooling</h4>
+              <h4 className="font-bold text-lg mb-2 text-white">Connection Pooling</h4>
               <p className="text-sm text-slate-300">
                 Reusing existing DB/Service connections instead of opening a new
                 one for every request. Avoids handshake overhead.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-white p-6 rounded-xl">
+            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
               <div className="text-3xl mb-4">🗜️</div>
-              <h4 className="font-bold text-lg mb-2">Compression</h4>
+              <h4 className="font-bold text-lg mb-2 text-white">Compression</h4>
               <p className="text-sm text-slate-300">
                 Using Gzip/Brotli to shrink payloads. Large text files
                 (JSON/HTML) can shrink by 70%+, saving bandwidth.
@@ -1708,7 +2066,7 @@ export default function Networking() {
 
         {/* Next Steps */}
         <section
-          ref={(element) => (sectionsReference.current[6] = element)}
+          ref={(element) => (sectionsReference.current[7] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700"
         >
           <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-12 text-center">
