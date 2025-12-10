@@ -40,54 +40,26 @@ export default function Foundations() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
-      {/* Hero Section */}
-      <section className="module-hero relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+    <div className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="relative gradient-overlay py-20 md:py-32 overflow-hidden">
+        <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 mb-8">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-              </svg>
-              <span className="text-sm font-semibold text-white tracking-wide">
-                MODULE 1: CORE PRINCIPLES & SIZING
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
+              <span className="text-sm font-medium text-blue-700">
+                Module 1
               </span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-              Foundations & <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-pink-200 to-pink-300">
-                Back-of-Envelope
-              </span>
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
+              Foundations & <span className="text-gradient">Back-of-Envelope</span>
             </h1>
 
-            <p className="text-xl md:text-2xl text-white mb-20 mt-10">
+            <p className="text-lg md:text-xl text-slate-600 mb-8 mx-auto">
               Master the essential principles of system design through deep-dive
               explanations, real-world examples, and hands-on interactive
               demonstrations. Build the foundation every system architect needs.
             </p>
-
-            <div className="flex flex-wrap justify-center gap-4 mt-5">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3">
-                <div className="text-3xl font-bold text-white">4</div>
-                <div className="text-sm text-blue-100">Core Topics</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3">
-                <div className="text-3xl font-bold text-white">8+</div>
-                <div className="text-sm text-blue-100">Interactive Demos</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
