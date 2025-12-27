@@ -1,6 +1,8 @@
 import { useMemo, useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 
+import RetryJitterDemo from "@/components/reliability/retry-jitter-demo"
+
 /**
  * Reliability & Resilience page component
  * Comprehensive guide to SLOs, error budgets, circuit breakers, DR, and distributed consensus
@@ -723,6 +725,10 @@ export default function ReliabilityResilience() {
             <p className="text-xl text-slate-600 max-w-4xl leading-relaxed">
               Protect systems from traffic spikes, abuse, and cascading failures.
             </p>
+          </div>
+
+          <div className="mb-8">
+            <RetryJitterDemo />
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-8">

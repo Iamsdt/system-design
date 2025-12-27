@@ -1,6 +1,12 @@
 import { useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
+// Module 4 Components
+import KubernetesDeepDive from "../../components/kubernetes-deep-dive"
+import ServiceDiscovery from "../../components/service-discovery"
+import SidecarPattern from "../../components/sidecar-pattern"
+import AmbassadorPattern from "../../components/ambassador-pattern"
+
 function clampPercent(value) {
   const n = Number(value)
   if (Number.isNaN(n)) return 0
@@ -1139,6 +1145,86 @@ export default function ComputeRuntime() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Kubernetes Deep Dive */}
+        <section className="mb-16">
+          <div className="mb-10">
+            <div className="text-sm font-bold text-blue-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center text-sm">
+                07
+              </span>
+              KUBERNETES DEEP DIVE
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              Master Kubernetes concepts
+            </h2>
+            <p className="text-lg text-slate-600 max-w-4xl">
+              Understand the core building blocks of Kubernetes: Pods, Services, Deployments, ConfigMaps, Secrets, Ingress, Service Mesh, and when to use StatefulSets.
+            </p>
+          </div>
+
+          <KubernetesDeepDive />
+        </section>
+
+        {/* Service Discovery */}
+        <section className="mb-16">
+          <div className="mb-10">
+            <div className="text-sm font-bold text-green-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-green-600 text-white flex items-center justify-center text-sm">
+                08
+              </span>
+              SERVICE DISCOVERY
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              How services find each other
+            </h2>
+            <p className="text-lg text-slate-600 max-w-4xl">
+              Learn how distributed systems discover and communicate with services using client-side vs server-side patterns, and explore tools like Consul, etcd, and Kubernetes DNS.
+            </p>
+          </div>
+
+          <ServiceDiscovery />
+        </section>
+
+        {/* Sidecar Pattern */}
+        <section className="mb-16">
+          <div className="mb-10">
+            <div className="text-sm font-bold text-purple-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-purple-600 text-white flex items-center justify-center text-sm">
+                09
+              </span>
+              SIDECAR PATTERN
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              Extend apps without code changes
+            </h2>
+            <p className="text-lg text-slate-600 max-w-4xl">
+              Discover how sidecar containers add logging, monitoring, and proxy capabilities to applications without modifying their code.
+            </p>
+          </div>
+
+          <SidecarPattern />
+        </section>
+
+        {/* Ambassador Pattern */}
+        <section className="mb-16">
+          <div className="mb-10">
+            <div className="text-sm font-bold text-orange-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-orange-600 text-white flex items-center justify-center text-sm">
+                10
+              </span>
+              AMBASSADOR PATTERN
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              Simplify external API calls
+            </h2>
+            <p className="text-lg text-slate-600 max-w-4xl">
+              Learn how ambassador sidecars handle outbound connections with rate limiting, authentication, retries, and service versioning—and how they differ from Service Mesh and API Gateway.
+            </p>
+          </div>
+
+          <AmbassadorPattern />
         </section>
 
         {/* Navigation */}

@@ -1,5 +1,9 @@
 import { useMemo, useState, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
+import AcidVsBase from "../../components/acid-vs-base"
+import DatabaseIndexingDeepDive from "../../components/database-indexing-deep-dive"
+import OltpVsOlapExpanded from "../../components/oltp-vs-olap-expanded"
+import ReadReplicasReplication from "../../components/read-replicas-replication"
 
 /**
  * Data Architecture & Storage Choices page component
@@ -1671,8 +1675,42 @@ export default function DataArchitecture() {
           </div>
         </section>
 
+        {/* Section 6: ACID vs BASE */}
+        <section
+          className="section-base-animation"
+          ref={(element) => (sectionsReference.current[6] = element)}
+        >
+          <AcidVsBase />
+        </section>
+
+        {/* Section 7: Database Indexing Deep Dive */}
+        <section
+          className="section-base-animation"
+          ref={(element) => (sectionsReference.current[7] = element)}
+        >
+          <DatabaseIndexingDeepDive />
+        </section>
+
+        {/* Section 8: OLTP vs OLAP Expanded */}
+        <section
+          className="section-base-animation"
+          ref={(element) => (sectionsReference.current[8] = element)}
+        >
+          <OltpVsOlapExpanded />
+        </section>
+
+        {/* Section 9: Read Replicas & Replication */}
+        <section
+          className="section-base-animation"
+          ref={(element) => (sectionsReference.current[9] = element)}
+        >
+          <ReadReplicasReplication />
+        </section>
+
         {/* Navigation */}
-        <section className="py-6">
+        <section className="py-6"
+          ref={(element) => (sectionsReference.current[10] = element)}
+        >
           <div className="flex justify-between items-center">
             <button onClick={() => nav("/networking")} className="btn-secondary">
               ← Previous: Networking

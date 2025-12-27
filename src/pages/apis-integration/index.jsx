@@ -1,5 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import ApiGatewaySimulator from "@/components/api-gateway-simulator"
+import ApiVersioningStrategies from "@/components/api-versioning-strategies"
+import IdempotencyDeepDive from "@/components/idempotency-deep-dive"
+import SagaPattern from "@/components/saga-pattern"
+import HATEOAS from "@/components/hateoas"
+import OpenAPISwagger from "@/components/openapi-swagger"
+import EventSourcing from "@/components/event-sourcing"
+import CQRSPattern from "@/components/cqrs-pattern"
+import OutboxPattern from "@/components/outbox-pattern"
 
 export default function ApisIntegration() {
   const nav = useNavigate()
@@ -499,6 +507,71 @@ export default function ApisIntegration() {
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Components Section */}
+        <section className="mb-16">
+          <div className="mb-10">
+            <div className="text-sm font-bold text-purple-600 uppercase tracking-wider mb-3 flex items-center gap-2">
+              <span className="w-8 h-8 rounded-lg bg-purple-600 text-white flex items-center justify-center text-sm">
+                05
+              </span>
+              INTERACTIVE DEEP DIVES
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+              Hands-On Learning
+            </h2>
+            <p className="text-lg text-slate-600 max-w-4xl mb-6">
+              Explore interactive visualizations and code examples for API design patterns and distributed system communication.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {/* API Versioning Strategies */}
+            <div className="border-t-4 border-blue-500 pt-8">
+              <ApiVersioningStrategies />
+            </div>
+
+            {/* Idempotency Deep Dive */}
+            <div className="border-t-4 border-green-500 pt-8">
+              <IdempotencyDeepDive />
+            </div>
+
+            {/* HATEOAS */}
+            <div className="border-t-4 border-amber-500 pt-8">
+              <HATEOAS />
+            </div>
+
+            {/* OpenAPI/Swagger */}
+            <div className="border-t-4 border-cyan-500 pt-8">
+              <OpenAPISwagger />
+            </div>
+
+            {/* Saga Pattern */}
+            <div className="border-t-4 border-red-500 pt-8">
+              <SagaPattern />
+            </div>
+
+            {/* Event Sourcing */}
+            <div className="border-t-4 border-indigo-500 pt-8">
+              <EventSourcing />
+            </div>
+
+            {/* CQRS Pattern */}
+            <div className="border-t-4 border-pink-500 pt-8">
+              <CQRSPattern />
+            </div>
+
+            {/* Outbox Pattern */}
+            <div className="border-t-4 border-teal-500 pt-8">
+              <OutboxPattern />
+            </div>
+
+            {/* API Gateway Simulator */}
+            <div className="border-t-4 border-orange-500 pt-8">
+              <ApiGatewaySimulator />
             </div>
           </div>
         </section>
