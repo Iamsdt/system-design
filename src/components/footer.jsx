@@ -4,11 +4,11 @@ export default function Footer() {
       <div className="container-custom py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
-            <p className="text-sm text-slate-600">
-              Cloud Engineering Course Platform
+            <p className="text-sm font-bold text-slate-900">
+              System Design & Cloud Architecture
             </p>
             <p className="text-xs text-slate-500 mt-1">
-              © 2025 System Design & Cloud Architecture
+              © 2025 • Created by Shudipto Trafder
             </p>
           </div>
 

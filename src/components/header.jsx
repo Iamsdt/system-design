@@ -24,10 +24,10 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900">
-                Cloud Engineering
+                System Design
               </h1>
               <p className="text-xs text-slate-500">
-                System Design & Architecture
+                & Cloud Architecture
               </p>
             </div>
           </Link>
