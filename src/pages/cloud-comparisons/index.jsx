@@ -14,6 +14,13 @@ import { Link } from "react-router-dom"
 import CloudCostEstimator from "./components/cloud-cost-estimator"
 import ManagedServiceDecisionTree from "./components/managed-service-decision-tree"
 import ServiceComparisonMatrix from "./components/service-comparison-matrix"
+import { MultiCloudStrategies } from "./components/multi-cloud-strategies"
+import { CloudNativeVsAgnostic } from "./components/cloud-native-vs-agnostic"
+import { HybridCloud } from "./components/hybrid-cloud"
+import { CloudNetworking } from "./components/cloud-networking"
+import { CloudMigrationPatterns } from "./components/cloud-migration-patterns"
+import { FinOpsDeepDive } from "./components/finops-deep-dive"
+import { CloudGovernance } from "./components/cloud-governance"
 
 /**
  * Hero Section component
@@ -243,6 +250,85 @@ const CloudComparisonsPage = () => {
         </div>
 
         <DeepDiveSection />
+
+        <div className="space-y-24 mb-24">
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <Cloud className="text-blue-600" />
+              Multi-Cloud Strategies
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Understand when to use multiple cloud providers and how to mitigate vendor lock-in.
+            </p>
+            <MultiCloudStrategies />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <Layers className="text-green-600" />
+              Cloud-Native vs Cloud-Agnostic
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Deep dive into the trade-offs between cloud-native and cloud-agnostic approaches.
+            </p>
+            <CloudNativeVsAgnostic />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <Cpu className="text-purple-600" />
+              Hybrid Cloud
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Learn how to integrate on-premises infrastructure with public cloud services.
+            </p>
+            <HybridCloud />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <Zap className="text-orange-600" />
+              Cloud Networking
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Understand VPC peering, transit gateways, private links, and cross-cloud connectivity.
+            </p>
+            <CloudNetworking />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <ArrowRight className="text-indigo-600" />
+              Cloud Migration Patterns
+            </h2>
+            <p className="text-slate-600 mb-8">
+              The 6 R's of cloud migration: rehost, replatform, refactor, repurchase, retire, and retain.
+            </p>
+            <CloudMigrationPatterns />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <BarChart3 className="text-emerald-600" />
+              FinOps Deep Dive
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Master cloud cost optimization with Reserved Instances, Savings Plans, and right-sizing strategies.
+            </p>
+            <FinOpsDeepDive />
+          </div>
+
+          <div className="reveal opacity-0 translate-y-10 transition-all duration-700">
+            <h2 className="text-3xl font-black mb-4 flex items-center gap-3">
+              <CheckCircle2 className="text-red-600" />
+              Cloud Governance
+            </h2>
+            <p className="text-slate-600 mb-8">
+              Implement landing zones, policy enforcement, and compliance automation at scale.
+            </p>
+            <CloudGovernance />
+          </div>
+        </div>
 
         <div className="flex flex-col items-center text-center reveal opacity-0 translate-y-10 transition-all duration-700">
           <div className="w-px h-24 bg-gradient-to-b from-transparent to-slate-300 mb-8" />

@@ -4,6 +4,16 @@ import AlertTuningSimulator from "./components/alert-tuning-simulator"
 import CostOptimizationCalculator from "./components/cost-optimization-calculator"
 import ObservabilityStackBuilder from "./components/observability-stack-builder"
 import SLODashboard from "./components/slo-dashboard"
+import LogAggregation from "./components/log-aggregation"
+import StructuredLogging from "./components/structured-logging"
+import DistributedTracing from "./components/distributed-tracing"
+import APMTools from "./components/apm-tools"
+import SyntheticMonitoring from "./components/synthetic-monitoring"
+import RealUserMonitoring from "./components/real-user-monitoring"
+import SREPractices from "./components/sre-practices"
+import OnCallBestPractices from "./components/oncall-best-practices"
+import CapacityPlanning from "./components/capacity-planning"
+import ServiceCatalog from "./components/service-catalog"
 
 /**
  * Observability & Operations page component
@@ -142,9 +152,89 @@ export default function ObservabilityOperations() {
           </div>
         </section>
 
-        {/* Section 2: Dashboards & Alerts */}
+        {/* Section: Log Aggregation */}
         <section
           ref={(element) => (sectionsReference.current[1] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <LogAggregation />
+        </section>
+
+        {/* Section: Structured Logging */}
+        <section
+          ref={(element) => (sectionsReference.current[2] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <StructuredLogging />
+        </section>
+
+        {/* Section: Distributed Tracing */}
+        <section
+          ref={(element) => (sectionsReference.current[3] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <DistributedTracing />
+        </section>
+
+        {/* Section: APM Tools */}
+        <section
+          ref={(element) => (sectionsReference.current[4] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <APMTools />
+        </section>
+
+        {/* Section: Synthetic Monitoring */}
+        <section
+          ref={(element) => (sectionsReference.current[5] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <SyntheticMonitoring />
+        </section>
+
+        {/* Section: Real User Monitoring */}
+        <section
+          ref={(element) => (sectionsReference.current[6] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <RealUserMonitoring />
+        </section>
+
+        {/* Section: SRE Practices */}
+        <section
+          ref={(element) => (sectionsReference.current[7] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <SREPractices />
+        </section>
+
+        {/* Section: On-Call Best Practices */}
+        <section
+          ref={(element) => (sectionsReference.current[8] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <OnCallBestPractices />
+        </section>
+
+        {/* Section: Capacity Planning */}
+        <section
+          ref={(element) => (sectionsReference.current[9] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <CapacityPlanning />
+        </section>
+
+        {/* Section: Service Catalog */}
+        <section
+          ref={(element) => (sectionsReference.current[10] = element)}
+          className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
+        >
+          <ServiceCatalog />
+        </section>
+
+        {/* Section 2: Dashboards & Alerts */}
+        <section
+          ref={(element) => (sectionsReference.current[11] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -198,7 +288,7 @@ export default function ObservabilityOperations() {
 
         {/* Section 3: Incident Response */}
         <section
-          ref={(element) => (sectionsReference.current[2] = element)}
+          ref={(element) => (sectionsReference.current[12] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
@@ -271,7 +361,7 @@ export default function ObservabilityOperations() {
 
         {/* Section 4: Cost Optimization */}
         <section
-          ref={(element) => (sectionsReference.current[3] = element)}
+          ref={(element) => (sectionsReference.current[13] = element)}
           className="opacity-0 translate-y-8 transition-all duration-700 mb-24"
         >
           <div className="mb-12">
