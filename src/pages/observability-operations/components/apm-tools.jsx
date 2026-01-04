@@ -493,7 +493,7 @@ export default function APMTools() {
                 </div>
 
                 {/* Pricing */}
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
+                <div className=" from-blue-50 to-purple-50 rounded-lg p-6">
                   <h5 className="text-lg font-semibold text-slate-900 mb-3">Pricing</h5>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>

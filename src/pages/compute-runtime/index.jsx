@@ -2,22 +2,29 @@ import { useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 // Module 4 Components
+import AmbassadorPattern from "../../components/ambassador-pattern"
 import KubernetesDeepDive from "../../components/kubernetes-deep-dive"
 import ServiceDiscovery from "../../components/service-discovery"
 import SidecarPattern from "../../components/sidecar-pattern"
-import AmbassadorPattern from "../../components/ambassador-pattern"
 
-function clampPercent(value) {
+/**
+ *
+ */
+const clampPercent = (value) => {
   const n = Number(value)
   if (Number.isNaN(n)) return 0
   return Math.max(0, Math.min(100, n))
 }
 
-function formatMs(value) {
-  return `${Math.round(value)}ms`
-}
+/**
+ *
+ */
+const formatMs = (value) => `${Math.round(value)}ms`
 
-function DeploymentStrategySimulator() {
+/**
+ *
+ */
+const DeploymentStrategySimulator = () => {
   const [strategy, setStrategy] = useState("canary")
   const [progress, setProgress] = useState(30) // used for rolling
   const [trafficToNew, setTrafficToNew] = useState(10) // used for canary/blue-green
@@ -40,13 +47,21 @@ function DeploymentStrategySimulator() {
       (effectiveNewTraffic / 100) * newErrorPct
 
     const totalP95 =
-      (effectiveOldTraffic / 100) * oldP95 + (effectiveNewTraffic / 100) * newP95
+      (effectiveOldTraffic / 100) * oldP95 +
+      (effectiveNewTraffic / 100) * newP95
 
     return {
       totalErrorPct,
       totalP95,
     }
-  }, [effectiveOldTraffic, effectiveNewTraffic, oldErrorPct, newErrorPct, oldP95, newP95])
+  }, [
+    effectiveOldTraffic,
+    effectiveNewTraffic,
+    oldErrorPct,
+    newErrorPct,
+    oldP95,
+    newP95,
+  ])
 
   const recommendation = useMemo(() => {
     const errorBudgetThreshold = 1.0
@@ -83,7 +98,7 @@ function DeploymentStrategySimulator() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl">
+            <div className="w-10 h-10 rounded-lg  from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl">
               🚦
             </div>
             <div>
@@ -168,7 +183,8 @@ function DeploymentStrategySimulator() {
           )}
 
           <div className="text-xs text-slate-500 mt-1">
-            Effective split: {effectiveOldTraffic}% old / {effectiveNewTraffic}% new
+            Effective split: {effectiveOldTraffic}% old / {effectiveNewTraffic}%
+            new
           </div>
         </div>
 
@@ -176,7 +192,9 @@ function DeploymentStrategySimulator() {
           <div className="text-xs font-semibold uppercase tracking-wide">
             Recommendation
           </div>
-          <div className="text-lg font-extrabold mt-1">{recommendation.label}</div>
+          <div className="text-lg font-extrabold mt-1">
+            {recommendation.label}
+          </div>
           <div className="text-xs mt-1">{recommendation.reason}</div>
         </div>
       </div>
@@ -276,7 +294,7 @@ function DeploymentStrategySimulator() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-4">
+        <div className="border border-indigo-200 rounded-lg p-4">
           <div className="text-xs font-semibold text-indigo-700 uppercase tracking-wide mb-3">
             What users experience
           </div>
@@ -302,11 +320,18 @@ function DeploymentStrategySimulator() {
           </div>
 
           <div className="bg-white/60 border border-indigo-100 rounded-xl p-4">
-            <div className="text-sm font-bold text-slate-900 mb-2">How to read this</div>
+            <div className="text-sm font-bold text-slate-900 mb-2">
+              How to read this
+            </div>
             <ul className="space-y-2 text-sm text-slate-700">
               <li>• Canary reduces blast radius by limiting new traffic.</li>
-              <li>• Blue/green is fast to rollback but the cutover is abrupt.</li>
-              <li>• Rolling depends heavily on readiness + safe surge/unavailable limits.</li>
+              <li>
+                • Blue/green is fast to rollback but the cutover is abrupt.
+              </li>
+              <li>
+                • Rolling depends heavily on readiness + safe surge/unavailable
+                limits.
+              </li>
             </ul>
           </div>
         </div>
@@ -318,7 +343,8 @@ function DeploymentStrategySimulator() {
             Rolling
           </div>
           <div className="text-sm text-slate-700">
-            Gradually replace pods/instances. Requires strong probes and rollout tuning.
+            Gradually replace pods/instances. Requires strong probes and rollout
+            tuning.
           </div>
         </div>
         <div className="bg-white border border-slate-200 rounded-xl p-4">
@@ -342,6 +368,9 @@ function DeploymentStrategySimulator() {
   )
 }
 
+/**
+ *
+ */
 export default function ComputeRuntime() {
   const nav = useNavigate()
 
@@ -362,14 +391,13 @@ export default function ComputeRuntime() {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-600 mb-8 mx-auto">
-              Learn how to choose between containers, serverless, and Kubernetes — and how to deploy safely using rolling, blue/green, and canary strategies.
+              Learn how to choose between containers, serverless, and Kubernetes
+              — and how to deploy safely using rolling, blue/green, and canary
+              strategies.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button
-                onClick={() => nav("/")}
-                className="btn-secondary"
-              >
+              <button onClick={() => nav("/")} className="btn-secondary">
                 Back to Home
               </button>
             </div>
@@ -391,16 +419,22 @@ export default function ComputeRuntime() {
               Understanding compute models
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl mb-6">
-              Before choosing a platform, decide what you want to scale: a whole VM, a container/pod, a request-driven instance, or a single function invocation. Each model offers different trade-offs between control, operational overhead, cost, and scalability.
+              Before choosing a platform, decide what you want to scale: a whole
+              VM, a container/pod, a request-driven instance, or a single
+              function invocation. Each model offers different trade-offs
+              between control, operational overhead, cost, and scalability.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="bg-white border-2 border-slate-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">🖥️</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">VM / Instance</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                VM / Instance
+              </h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-4">
-                Maximum control. Great for legacy stacks, special networking needs, or custom kernels.
+                Maximum control. Great for legacy stacks, special networking
+                needs, or custom kernels.
               </p>
               <div className="space-y-2 mb-4">
                 <div className="text-xs font-semibold text-green-700 bg-green-50 px-3 py-1 rounded">
@@ -417,15 +451,19 @@ export default function ComputeRuntime() {
                 </div>
               </div>
               <div className="text-xs text-slate-500 border-t pt-3">
-                <strong>Use when:</strong> Running databases, stateful apps, or legacy systems that need specific OS configurations.
+                <strong>Use when:</strong> Running databases, stateful apps, or
+                legacy systems that need specific OS configurations.
               </div>
             </div>
 
             <div className="bg-white border-2 border-indigo-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">📦</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Container / Pod</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                Container / Pod
+              </h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-4">
-                Portable packaging with predictable runtime. Ideal for web services and background workers.
+                Portable packaging with predictable runtime. Ideal for web
+                services and background workers.
               </p>
               <div className="space-y-2 mb-4">
                 <div className="text-xs font-semibold text-green-700 bg-green-50 px-3 py-1 rounded">
@@ -442,15 +480,19 @@ export default function ComputeRuntime() {
                 </div>
               </div>
               <div className="text-xs text-slate-500 border-t pt-3">
-                <strong>Use when:</strong> Building microservices, APIs, or batch jobs that need portability and fast scaling.
+                <strong>Use when:</strong> Building microservices, APIs, or
+                batch jobs that need portability and fast scaling.
               </div>
             </div>
 
             <div className="bg-white border-2 border-purple-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">⚡</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Serverless</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">
+                Serverless
+              </h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-4">
-                Pay-per-use and fast iteration. Great for event-driven workloads and simpler HTTP APIs.
+                Pay-per-use and fast iteration. Great for event-driven workloads
+                and simpler HTTP APIs.
               </p>
               <div className="space-y-2 mb-4">
                 <div className="text-xs font-semibold text-green-700 bg-green-50 px-3 py-1 rounded">
@@ -467,30 +509,40 @@ export default function ComputeRuntime() {
                 </div>
               </div>
               <div className="text-xs text-slate-500 border-t pt-3">
-                <strong>Use when:</strong> Building event handlers, simple APIs, or workloads with unpredictable traffic patterns.
+                <strong>Use when:</strong> Building event handlers, simple APIs,
+                or workloads with unpredictable traffic patterns.
               </div>
             </div>
           </div>
 
           {/* Architecture Patterns */}
-          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-200">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Architecture Evolution: Monolith → Modular → Microservices</h3>
-            
+          <div className=" from-slate-50 to-blue-50 rounded-2xl p-8 border border-slate-200">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">
+              Architecture Evolution: Monolith → Modular → Microservices
+            </h3>
+
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 border border-slate-200">
-                <h4 className="text-lg font-bold text-slate-900 mb-3">🏢 Monolith</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-3">
+                  🏢 Monolith
+                </h4>
                 <p className="text-sm text-slate-700 mb-4">
-                  Single deployable unit with all features bundled together. Simple to develop and deploy initially.
+                  Single deployable unit with all features bundled together.
+                  Simple to develop and deploy initially.
                 </p>
                 <div className="space-y-2 text-xs">
-                  <div className="font-semibold text-slate-900">When to use:</div>
+                  <div className="font-semibold text-slate-900">
+                    When to use:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Small teams (2-5 developers)</li>
                     <li>• Early-stage products (MVP)</li>
                     <li>• Simple domain models</li>
                     <li>• Low traffic (&lt;10K RPS)</li>
                   </ul>
-                  <div className="font-semibold text-slate-900 mt-3">Watch out:</div>
+                  <div className="font-semibold text-slate-900 mt-3">
+                    Watch out:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Tight coupling limits changes</li>
                     <li>• Single failure point</li>
@@ -500,19 +552,26 @@ export default function ComputeRuntime() {
               </div>
 
               <div className="bg-white rounded-xl p-6 border border-indigo-200">
-                <h4 className="text-lg font-bold text-slate-900 mb-3">🧩 Modular Monolith</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-3">
+                  🧩 Modular Monolith
+                </h4>
                 <p className="text-sm text-slate-700 mb-4">
-                  Single deployment with clear internal module boundaries. Best of both worlds for many teams.
+                  Single deployment with clear internal module boundaries. Best
+                  of both worlds for many teams.
                 </p>
                 <div className="space-y-2 text-xs">
-                  <div className="font-semibold text-slate-900">When to use:</div>
+                  <div className="font-semibold text-slate-900">
+                    When to use:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Growing teams (5-20 devs)</li>
                     <li>• Mature products</li>
                     <li>• Need code boundaries</li>
                     <li>• Want simpler ops</li>
                   </ul>
-                  <div className="font-semibold text-slate-900 mt-3">Benefits:</div>
+                  <div className="font-semibold text-slate-900 mt-3">
+                    Benefits:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Clear boundaries, simple deploy</li>
                     <li>• Easy refactoring</li>
@@ -522,19 +581,26 @@ export default function ComputeRuntime() {
               </div>
 
               <div className="bg-white rounded-xl p-6 border border-purple-200">
-                <h4 className="text-lg font-bold text-slate-900 mb-3">🔗 Microservices</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-3">
+                  🔗 Microservices
+                </h4>
                 <p className="text-sm text-slate-700 mb-4">
-                  Independently deployable services. High operational overhead but enables team autonomy.
+                  Independently deployable services. High operational overhead
+                  but enables team autonomy.
                 </p>
                 <div className="space-y-2 text-xs">
-                  <div className="font-semibold text-slate-900">When to use:</div>
+                  <div className="font-semibold text-slate-900">
+                    When to use:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Large teams (20+ devs)</li>
                     <li>• Multiple products/domains</li>
                     <li>• Independent scaling needs</li>
                     <li>• Strong DevOps culture</li>
                   </ul>
-                  <div className="font-semibold text-slate-900 mt-3">Challenges:</div>
+                  <div className="font-semibold text-slate-900 mt-3">
+                    Challenges:
+                  </div>
                   <ul className="space-y-1 text-slate-600">
                     <li>• Distributed tracing needed</li>
                     <li>• Network latency</li>
@@ -548,11 +614,16 @@ export default function ComputeRuntime() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">💡</span>
                 <div>
-                  <div className="font-bold text-amber-900 mb-2">Golden Rule: Start with a monolith</div>
+                  <div className="font-bold text-amber-900 mb-2">
+                    Golden Rule: Start with a monolith
+                  </div>
                   <p className="text-sm text-amber-800">
-                    Most systems should start as a well-structured monolith and only extract services when team size, 
-                    deployment frequency, or scaling requirements justify the operational complexity. Premature microservices 
-                    can slow down development by 3-5x due to cross-service changes, testing overhead, and debugging difficulty.
+                    Most systems should start as a well-structured monolith and
+                    only extract services when team size, deployment frequency,
+                    or scaling requirements justify the operational complexity.
+                    Premature microservices can slow down development by 3-5x
+                    due to cross-service changes, testing overhead, and
+                    debugging difficulty.
                   </p>
                 </div>
               </div>
@@ -573,28 +644,43 @@ export default function ComputeRuntime() {
               Orchestrate safely
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Kubernetes gives you declarative rollouts, autoscaling, and self-healing — but it only works well when probes, resource requests, and disruption settings are tuned.
+              Kubernetes gives you declarative rollouts, autoscaling, and
+              self-healing — but it only works well when probes, resource
+              requests, and disruption settings are tuned.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-blue-900 mb-4">Core primitives</h3>
+            <div className=" from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-blue-900 mb-4">
+                Core primitives
+              </h3>
               <ul className="space-y-2 text-slate-700">
-                <li>• Deployment / ReplicaSet: stateless rollouts and replica management</li>
-                <li>• Service / Ingress: stable routing and traffic entry points</li>
+                <li>
+                  • Deployment / ReplicaSet: stateless rollouts and replica
+                  management
+                </li>
+                <li>
+                  • Service / Ingress: stable routing and traffic entry points
+                </li>
                 <li>• ConfigMaps / Secrets: configuration and credentials</li>
                 <li>• StatefulSet: stable identities for stateful workloads</li>
               </ul>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-emerald-900 mb-4">Scaling + disruptions</h3>
+            <div className=" from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold text-emerald-900 mb-4">
+                Scaling + disruptions
+              </h3>
               <ul className="space-y-2 text-slate-700">
                 <li>• HPA scales pods based on CPU/memory/custom metrics</li>
-                <li>• VPA rightsizes requests/limits (use carefully with HPA)</li>
+                <li>
+                  • VPA rightsizes requests/limits (use carefully with HPA)
+                </li>
                 <li>• PDBs limit voluntary evictions during node drains</li>
-                <li>• Readiness/startup probes prevent scaling on “warming” pods</li>
+                <li>
+                  • Readiness/startup probes prevent scaling on “warming” pods
+                </li>
               </ul>
             </div>
           </div>
@@ -613,7 +699,8 @@ export default function ComputeRuntime() {
               Deployment strategy simulator
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Play with traffic shifting and see how error rate and latency combine across versions.
+              Play with traffic shifting and see how error rate and latency
+              combine across versions.
             </p>
           </div>
 
@@ -633,16 +720,21 @@ export default function ComputeRuntime() {
               Safe production rollouts
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl mb-6">
-              Choosing the right deployment strategy can mean the difference between a smooth release and a production outage. Let's explore each approach in depth.
+              Choosing the right deployment strategy can mean the difference
+              between a smooth release and a production outage. Let's explore
+              each approach in depth.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="bg-white border-2 border-blue-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">🔄</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Rolling Deployment</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Rolling Deployment
+              </h3>
               <p className="text-sm text-slate-700 mb-4">
-                Gradually replaces old pods with new ones. Default Kubernetes strategy.
+                Gradually replaces old pods with new ones. Default Kubernetes
+                strategy.
               </p>
               <div className="space-y-2 mb-4">
                 <div className="text-xs font-bold text-slate-900">Pros:</div>
@@ -651,7 +743,9 @@ export default function ComputeRuntime() {
                   <li>• Resource efficient (no extra capacity)</li>
                   <li>• Built into Kubernetes</li>
                 </ul>
-                <div className="text-xs font-bold text-slate-900 mt-3">Cons:</div>
+                <div className="text-xs font-bold text-slate-900 mt-3">
+                  Cons:
+                </div>
                 <ul className="text-xs text-slate-700 space-y-1">
                   <li>• Both versions run simultaneously</li>
                   <li>• Rollback slower (gradual)</li>
@@ -659,13 +753,20 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs">
-                <strong>Best for:</strong> Stateless apps with backward-compatible changes. Set <code className="bg-white px-1.5 rounded">maxUnavailable: 0</code> for zero downtime.
+                <strong>Best for:</strong> Stateless apps with
+                backward-compatible changes. Set{" "}
+                <code className="bg-white px-1.5 rounded">
+                  maxUnavailable: 0
+                </code>{" "}
+                for zero downtime.
               </div>
             </div>
 
             <div className="bg-white border-2 border-green-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">🔵🟢</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Blue/Green</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Blue/Green
+              </h3>
               <p className="text-sm text-slate-700 mb-4">
                 Run two identical environments. Switch traffic instantly.
               </p>
@@ -676,7 +777,9 @@ export default function ComputeRuntime() {
                   <li>• Test in production-like environment</li>
                   <li>• Clean cutover</li>
                 </ul>
-                <div className="text-xs font-bold text-slate-900 mt-3">Cons:</div>
+                <div className="text-xs font-bold text-slate-900 mt-3">
+                  Cons:
+                </div>
                 <ul className="text-xs text-slate-700 space-y-1">
                   <li>• Requires 2x capacity</li>
                   <li>• Abrupt switchover</li>
@@ -684,7 +787,9 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-xs">
-                <strong>Best for:</strong> Critical services where instant rollback is worth the cost. Use external load balancer for traffic switching.
+                <strong>Best for:</strong> Critical services where instant
+                rollback is worth the cost. Use external load balancer for
+                traffic switching.
               </div>
             </div>
 
@@ -692,7 +797,8 @@ export default function ComputeRuntime() {
               <div className="text-3xl mb-3">🕊️</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Canary</h3>
               <p className="text-sm text-slate-700 mb-4">
-                Route small % of traffic to new version. Gradually increase if healthy.
+                Route small % of traffic to new version. Gradually increase if
+                healthy.
               </p>
               <div className="space-y-2 mb-4">
                 <div className="text-xs font-bold text-slate-900">Pros:</div>
@@ -701,7 +807,9 @@ export default function ComputeRuntime() {
                   <li>• Real production validation</li>
                   <li>• Gradual confidence building</li>
                 </ul>
-                <div className="text-xs font-bold text-slate-900 mt-3">Cons:</div>
+                <div className="text-xs font-bold text-slate-900 mt-3">
+                  Cons:
+                </div>
                 <ul className="text-xs text-slate-700 space-y-1">
                   <li>• Needs advanced routing (service mesh)</li>
                   <li>• Requires strong observability</li>
@@ -709,19 +817,25 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs">
-                <strong>Best for:</strong> High-risk changes. Start with 1-5%, monitor metrics, gradually increase to 100% over hours/days.
+                <strong>Best for:</strong> High-risk changes. Start with 1-5%,
+                monitor metrics, gradually increase to 100% over hours/days.
               </div>
             </div>
           </div>
 
           {/* Advanced Patterns */}
           <div className="mb-12">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">Advanced Deployment Patterns</h3>
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">
+              Advanced Deployment Patterns
+            </h3>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-7">
-                <h4 className="text-lg font-bold text-slate-900 mb-3">🚩 Feature Flags</h4>
+              <div className=" from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-7">
+                <h4 className="text-lg font-bold text-slate-900 mb-3">
+                  🚩 Feature Flags
+                </h4>
                 <p className="text-sm text-slate-700 mb-4">
-                  Deploy code but enable features selectively. Decouple deploy from release.
+                  Deploy code but enable features selectively. Decouple deploy
+                  from release.
                 </p>
                 <div className="space-y-3 text-xs">
                   <div className="bg-white rounded p-3 border border-purple-200">
@@ -734,18 +848,23 @@ export default function ComputeRuntime() {
                     </ul>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded p-3">
-                    <strong>Tools:</strong> LaunchDarkly, Split.io, Unleash, or roll your own with database toggle.
+                    <strong>Tools:</strong> LaunchDarkly, Split.io, Unleash, or
+                    roll your own with database toggle.
                   </div>
                   <div className="bg-red-50 border border-red-200 rounded p-3">
-                    <strong>Warning:</strong> Flag technical debt accumulates. Clean up old flags regularly!
+                    <strong>Warning:</strong> Flag technical debt accumulates.
+                    Clean up old flags regularly!
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-2xl p-7">
-                <h4 className="text-lg font-bold text-slate-900 mb-3">🎯 Shadow/Dark Launching</h4>
+              <div className=" from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-2xl p-7">
+                <h4 className="text-lg font-bold text-slate-900 mb-3">
+                  🎯 Shadow/Dark Launching
+                </h4>
                 <p className="text-sm text-slate-700 mb-4">
-                  Route production traffic to new version but don't return responses to users.
+                  Route production traffic to new version but don't return
+                  responses to users.
                 </p>
                 <div className="space-y-3 text-xs">
                   <div className="bg-white rounded p-3 border border-cyan-200">
@@ -758,7 +877,8 @@ export default function ComputeRuntime() {
                     </ul>
                   </div>
                   <div className="bg-green-50 border border-green-200 rounded p-3">
-                    <strong>Perfect for:</strong> Testing algorithm changes, database migrations, or new code paths with real load.
+                    <strong>Perfect for:</strong> Testing algorithm changes,
+                    database migrations, or new code paths with real load.
                   </div>
                 </div>
               </div>
@@ -766,14 +886,20 @@ export default function ComputeRuntime() {
           </div>
 
           {/* Rollback Strategy */}
-          <div className="bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-red-900 mb-6">🚨 Rollback & Incident Response</h3>
+          <div className=" from-red-50 to-rose-50 border-2 border-red-200 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-red-900 mb-6">
+              🚨 Rollback & Incident Response
+            </h3>
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">Rollback Checklist</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  Rollback Checklist
+                </h4>
                 <div className="space-y-2 text-sm">
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <div className="font-bold text-slate-900 mb-2">1. Detect Issues Fast</div>
+                    <div className="font-bold text-slate-900 mb-2">
+                      1. Detect Issues Fast
+                    </div>
                     <ul className="text-xs text-slate-700 space-y-1">
                       <li>• Automated alerts on error rate spikes</li>
                       <li>• Latency p95/p99 thresholds</li>
@@ -781,15 +907,24 @@ export default function ComputeRuntime() {
                     </ul>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <div className="font-bold text-slate-900 mb-2">2. Rollback Process</div>
+                    <div className="font-bold text-slate-900 mb-2">
+                      2. Rollback Process
+                    </div>
                     <ul className="text-xs text-slate-700 space-y-1">
-                      <li>• Kubernetes: <code className="bg-slate-100 px-1.5 rounded">kubectl rollout undo deployment/my-app</code></li>
+                      <li>
+                        • Kubernetes:{" "}
+                        <code className="bg-slate-100 px-1.5 rounded">
+                          kubectl rollout undo deployment/my-app
+                        </code>
+                      </li>
                       <li>• Blue/Green: flip load balancer back</li>
                       <li>• Canary: shift traffic back to stable</li>
                     </ul>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <div className="font-bold text-slate-900 mb-2">3. Post-Incident</div>
+                    <div className="font-bold text-slate-900 mb-2">
+                      3. Post-Incident
+                    </div>
                     <ul className="text-xs text-slate-700 space-y-1">
                       <li>• Root cause analysis (RCA)</li>
                       <li>• Add tests to prevent regression</li>
@@ -800,30 +935,42 @@ export default function ComputeRuntime() {
               </div>
 
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">Prevention Techniques</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  Prevention Techniques
+                </h4>
                 <div className="space-y-3 text-xs">
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <strong className="text-slate-900">Automated Rollback</strong>
+                    <strong className="text-slate-900">
+                      Automated Rollback
+                    </strong>
                     <p className="text-slate-700 mt-2">
-                      Use Flagger, Argo Rollouts, or custom scripts to automatically rollback when metrics degrade.
+                      Use Flagger, Argo Rollouts, or custom scripts to
+                      automatically rollback when metrics degrade.
                     </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <strong className="text-slate-900">Progressive Delivery</strong>
+                    <strong className="text-slate-900">
+                      Progressive Delivery
+                    </strong>
                     <p className="text-slate-700 mt-2">
-                      1% → 5% → 10% → 25% → 50% → 100% with bake time between each stage. Any alert = halt + rollback.
+                      1% → 5% → 10% → 25% → 50% → 100% with bake time between
+                      each stage. Any alert = halt + rollback.
                     </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-300">
                     <strong className="text-slate-900">Circuit Breakers</strong>
                     <p className="text-slate-700 mt-2">
-                      Automatically stop routing to failing services. Prevents cascading failures.
+                      Automatically stop routing to failing services. Prevents
+                      cascading failures.
                     </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-300">
-                    <strong className="text-slate-900">Database Migrations</strong>
+                    <strong className="text-slate-900">
+                      Database Migrations
+                    </strong>
                     <p className="text-slate-700 mt-2">
-                      Always backward-compatible. Deploy schema changes separately from code changes.
+                      Always backward-compatible. Deploy schema changes
+                      separately from code changes.
                     </p>
                   </div>
                 </div>
@@ -834,16 +981,21 @@ export default function ComputeRuntime() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">📊</span>
                 <div>
-                  <div className="font-bold text-slate-900 mb-2">Deployment Success Metrics</div>
+                  <div className="font-bold text-slate-900 mb-2">
+                    Deployment Success Metrics
+                  </div>
                   <div className="grid md:grid-cols-3 gap-4 text-xs">
                     <div>
-                      <strong>MTTR (Mean Time To Recovery):</strong> Target &lt;5 min with automated rollback.
+                      <strong>MTTR (Mean Time To Recovery):</strong> Target
+                      &lt;5 min with automated rollback.
                     </div>
                     <div>
-                      <strong>Change Failure Rate:</strong> % of deploys causing incidents. Target &lt;5%.
+                      <strong>Change Failure Rate:</strong> % of deploys causing
+                      incidents. Target &lt;5%.
                     </div>
                     <div>
-                      <strong>Deploy Frequency:</strong> How often you can safely ship. High performers: 10-100x/day.
+                      <strong>Deploy Frequency:</strong> How often you can
+                      safely ship. High performers: 10-100x/day.
                     </div>
                   </div>
                 </div>
@@ -865,14 +1017,18 @@ export default function ComputeRuntime() {
               When to go serverless
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl mb-6">
-              For many teams, serverless or managed container platforms are the sweet spot: you keep container portability while delegating infra ops, traffic management, and autoscaling to the provider.
+              For many teams, serverless or managed container platforms are the
+              sweet spot: you keep container portability while delegating infra
+              ops, traffic management, and autoscaling to the provider.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="bg-white border-2 border-purple-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">⚡</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Functions (FaaS)</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Functions (FaaS)
+              </h3>
               <p className="text-sm text-slate-700 mb-4">
                 Lambda, Cloud Functions, Azure Functions. Code runs per-request.
               </p>
@@ -892,13 +1048,16 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-purple-50 border border-purple-200 rounded p-3 text-xs">
-                <strong>Cost model:</strong> Pay per request + GB-second. First 1M requests/month often free.
+                <strong>Cost model:</strong> Pay per request + GB-second. First
+                1M requests/month often free.
               </div>
             </div>
 
             <div className="bg-white border-2 border-amber-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">📦</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Container Serverless</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Container Serverless
+              </h3>
               <p className="text-sm text-slate-700 mb-4">
                 Cloud Run, App Runner, Container Apps. Bring your own container.
               </p>
@@ -918,13 +1077,16 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-amber-50 border border-amber-200 rounded p-3 text-xs">
-                <strong>Sweet spot:</strong> Most web apps and APIs. Portable containers + zero ops.
+                <strong>Sweet spot:</strong> Most web apps and APIs. Portable
+                containers + zero ops.
               </div>
             </div>
 
             <div className="bg-white border-2 border-blue-200 rounded-2xl p-7 shadow-lg">
               <div className="text-3xl mb-3">☸️</div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Managed Kubernetes</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
+                Managed Kubernetes
+              </h3>
               <p className="text-sm text-slate-700 mb-4">
                 GKE, EKS, AKS. Full K8s control with managed control plane.
               </p>
@@ -944,55 +1106,86 @@ export default function ComputeRuntime() {
                 </ul>
               </div>
               <div className="bg-blue-50 border border-blue-200 rounded p-3 text-xs">
-                <strong>When to choose:</strong> 10+ services or need advanced K8s features (custom CRDs, operators).
+                <strong>When to choose:</strong> 10+ services or need advanced
+                K8s features (custom CRDs, operators).
               </div>
             </div>
           </div>
 
           {/* Cold Start Optimization */}
-          <div className="bg-gradient-to-br from-slate-50 to-purple-50 border-2 border-slate-200 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">🧊 Cold Start Optimization</h3>
+          <div className="border-2 border-slate-200 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-slate-900 mb-6">
+              🧊 Cold Start Optimization
+            </h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">What Causes Cold Starts?</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  What Causes Cold Starts?
+                </h4>
                 <div className="space-y-2 text-sm">
                   <div className="bg-white rounded-lg p-4 border border-slate-200">
                     <strong>1. Container/Runtime Initialization</strong>
-                    <p className="text-xs text-slate-700 mt-1">Platform provisions compute, downloads image, starts runtime. 500ms - 3s.</p>
+                    <p className="text-xs text-slate-700 mt-1">
+                      Platform provisions compute, downloads image, starts
+                      runtime. 500ms - 3s.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-slate-200">
                     <strong>2. Code Loading</strong>
-                    <p className="text-xs text-slate-700 mt-1">Import dependencies, parse code. Node.js/Python faster than Java/C#.</p>
+                    <p className="text-xs text-slate-700 mt-1">
+                      Import dependencies, parse code. Node.js/Python faster
+                      than Java/C#.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-slate-200">
                     <strong>3. App Initialization</strong>
-                    <p className="text-xs text-slate-700 mt-1">DB connections, config loading, cache warming. Your code runs here.</p>
+                    <p className="text-xs text-slate-700 mt-1">
+                      DB connections, config loading, cache warming. Your code
+                      runs here.
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">Mitigation Strategies</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  Mitigation Strategies
+                </h4>
                 <div className="space-y-2 text-xs">
                   <div className="bg-white rounded-lg p-4 border border-purple-200">
                     <strong>Provisioned Concurrency</strong>
-                    <p className="text-slate-700 mt-1">Keep N instances warm 24/7. Costs more but guarantees fast response. Use for latency-sensitive endpoints.</p>
+                    <p className="text-slate-700 mt-1">
+                      Keep N instances warm 24/7. Costs more but guarantees fast
+                      response. Use for latency-sensitive endpoints.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-purple-200">
                     <strong>Smaller Dependencies</strong>
-                    <p className="text-slate-700 mt-1">Trim unused libraries. Use tree-shaking. Smaller bundle = faster load.</p>
+                    <p className="text-slate-700 mt-1">
+                      Trim unused libraries. Use tree-shaking. Smaller bundle =
+                      faster load.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-purple-200">
                     <strong>Lazy Loading</strong>
-                    <p className="text-slate-700 mt-1">Import heavy dependencies only when needed. Initialize connections after first request.</p>
+                    <p className="text-slate-700 mt-1">
+                      Import heavy dependencies only when needed. Initialize
+                      connections after first request.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-purple-200">
                     <strong>Keep-Alive Pings</strong>
-                    <p className="text-slate-700 mt-1">CloudWatch Events/Scheduler to ping every 5 min. Prevents instance shutdown during low traffic.</p>
+                    <p className="text-slate-700 mt-1">
+                      CloudWatch Events/Scheduler to ping every 5 min. Prevents
+                      instance shutdown during low traffic.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-purple-200">
                     <strong>Connection Pooling</strong>
-                    <p className="text-slate-700 mt-1">Reuse DB connections across invocations. Store outside handler function (Lambda) or use global state.</p>
+                    <p className="text-slate-700 mt-1">
+                      Reuse DB connections across invocations. Store outside
+                      handler function (Lambda) or use global state.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1013,16 +1206,18 @@ export default function ComputeRuntime() {
               Monitor what matters
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl mb-6">
-              You can't improve what you don't measure. Build observability into your deployment pipeline from day one.
+              You can't improve what you don't measure. Build observability into
+              your deployment pipeline from day one.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-7">
+            <div className=" from-blue-50 to-cyan-50 border-2 border-blue-200 rounded-2xl p-7">
               <div className="text-3xl mb-3">📊</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Metrics</h3>
               <p className="text-sm text-slate-700 mb-4">
-                Time-series data: CPU, memory, request rate, latency percentiles.
+                Time-series data: CPU, memory, request rate, latency
+                percentiles.
               </p>
               <div className="space-y-2 text-xs">
                 <div className="bg-white rounded p-3 border border-blue-200">
@@ -1035,12 +1230,13 @@ export default function ComputeRuntime() {
                   </ul>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded p-3">
-                  <strong>Tools:</strong> Prometheus, Datadog, Grafana, CloudWatch
+                  <strong>Tools:</strong> Prometheus, Datadog, Grafana,
+                  CloudWatch
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-7">
+            <div className=" from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-7">
               <div className="text-3xl mb-3">📝</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Logs</h3>
               <p className="text-sm text-slate-700 mb-4">
@@ -1057,12 +1253,13 @@ export default function ComputeRuntime() {
                   </ul>
                 </div>
                 <div className="bg-purple-50 border border-purple-200 rounded p-3">
-                  <strong>Tools:</strong> ELK Stack, Loki, CloudWatch Logs, Splunk
+                  <strong>Tools:</strong> ELK Stack, Loki, CloudWatch Logs,
+                  Splunk
                 </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-7">
+            <div className=" from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-7">
               <div className="text-3xl mb-3">🔍</div>
               <h3 className="text-xl font-bold text-slate-900 mb-3">Traces</h3>
               <p className="text-sm text-slate-700 mb-4">
@@ -1079,54 +1276,98 @@ export default function ComputeRuntime() {
                   </ul>
                 </div>
                 <div className="bg-emerald-50 border border-emerald-200 rounded p-3">
-                  <strong>Tools:</strong> Jaeger, Zipkin, AWS X-Ray, OpenTelemetry
+                  <strong>Tools:</strong> Jaeger, Zipkin, AWS X-Ray,
+                  OpenTelemetry
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-amber-900 mb-6">🚨 Alerting Strategy</h3>
+          <div className=" from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-amber-900 mb-6">
+              🚨 Alerting Strategy
+            </h3>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">Alert on Symptoms, Not Causes</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  Alert on Symptoms, Not Causes
+                </h4>
                 <div className="space-y-2 text-sm">
                   <div className="bg-white rounded-lg p-4 border border-green-200">
-                    <strong className="text-green-700">✓ Good: "Error rate &gt; 1%"</strong>
-                    <p className="text-xs text-slate-700 mt-1">Users are impacted. This is what matters.</p>
+                    <strong className="text-green-700">
+                      ✓ Good: "Error rate &gt; 1%"
+                    </strong>
+                    <p className="text-xs text-slate-700 mt-1">
+                      Users are impacted. This is what matters.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-green-200">
-                    <strong className="text-green-700">✓ Good: "p95 latency &gt; 500ms"</strong>
-                    <p className="text-xs text-slate-700 mt-1">UX is degraded. Actionable signal.</p>
+                    <strong className="text-green-700">
+                      ✓ Good: "p95 latency &gt; 500ms"
+                    </strong>
+                    <p className="text-xs text-slate-700 mt-1">
+                      UX is degraded. Actionable signal.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-200">
-                    <strong className="text-red-700">✗ Bad: "CPU &gt; 80%"</strong>
-                    <p className="text-xs text-slate-700 mt-1">May not impact users. Use as info/dashboard metric.</p>
+                    <strong className="text-red-700">
+                      ✗ Bad: "CPU &gt; 80%"
+                    </strong>
+                    <p className="text-xs text-slate-700 mt-1">
+                      May not impact users. Use as info/dashboard metric.
+                    </p>
                   </div>
                   <div className="bg-white rounded-lg p-4 border border-red-200">
-                    <strong className="text-red-700">✗ Bad: "Disk &gt; 90%"</strong>
-                    <p className="text-xs text-slate-700 mt-1">Alert when requests start failing, not disk usage alone.</p>
+                    <strong className="text-red-700">
+                      ✗ Bad: "Disk &gt; 90%"
+                    </strong>
+                    <p className="text-xs text-slate-700 mt-1">
+                      Alert when requests start failing, not disk usage alone.
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="text-lg font-bold text-slate-900 mb-4">Alert Severity Levels</h4>
+                <h4 className="text-lg font-bold text-slate-900 mb-4">
+                  Alert Severity Levels
+                </h4>
                 <div className="space-y-2 text-xs">
                   <div className="bg-red-100 border border-red-300 rounded-lg p-4">
-                    <strong className="text-red-900">🔴 P0 (Page immediately)</strong>
-                    <p className="text-slate-800 mt-1">Service down, data loss risk, security breach. Wake someone up.</p>
-                    <p className="text-slate-700 mt-2"><strong>Example:</strong> Error rate &gt; 5% for 5 min</p>
+                    <strong className="text-red-900">
+                      🔴 P0 (Page immediately)
+                    </strong>
+                    <p className="text-slate-800 mt-1">
+                      Service down, data loss risk, security breach. Wake
+                      someone up.
+                    </p>
+                    <p className="text-slate-700 mt-2">
+                      <strong>Example:</strong> Error rate &gt; 5% for 5 min
+                    </p>
                   </div>
                   <div className="bg-orange-100 border border-orange-300 rounded-lg p-4">
-                    <strong className="text-orange-900">🟠 P1 (Alert, no page)</strong>
-                    <p className="text-slate-800 mt-1">Degraded performance, partial outage. Address in business hours.</p>
-                    <p className="text-slate-700 mt-2"><strong>Example:</strong> p95 latency 2x baseline</p>
+                    <strong className="text-orange-900">
+                      🟠 P1 (Alert, no page)
+                    </strong>
+                    <p className="text-slate-800 mt-1">
+                      Degraded performance, partial outage. Address in business
+                      hours.
+                    </p>
+                    <p className="text-slate-700 mt-2">
+                      <strong>Example:</strong> p95 latency 2x baseline
+                    </p>
                   </div>
                   <div className="bg-yellow-100 border border-yellow-300 rounded-lg p-4">
-                    <strong className="text-yellow-900">🟡 P2 (Ticket/dashboard)</strong>
-                    <p className="text-slate-800 mt-1">Early warning, not yet impacting users. Monitor and plan fix.</p>
-                    <p className="text-slate-700 mt-2"><strong>Example:</strong> Disk 85% full</p>
+                    <strong className="text-yellow-900">
+                      🟡 P2 (Ticket/dashboard)
+                    </strong>
+                    <p className="text-slate-800 mt-1">
+                      Early warning, not yet impacting users. Monitor and plan
+                      fix.
+                    </p>
+                    <p className="text-slate-700 mt-2">
+                      <strong>Example:</strong> Disk 85% full
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1136,10 +1377,14 @@ export default function ComputeRuntime() {
               <div className="flex items-start gap-3">
                 <span className="text-2xl">💡</span>
                 <div>
-                  <div className="font-bold text-slate-900 mb-2">On-Call Best Practice</div>
+                  <div className="font-bold text-slate-900 mb-2">
+                    On-Call Best Practice
+                  </div>
                   <p className="text-sm text-slate-700">
-                    If an alert fires and no action is taken, either the alert threshold is wrong or the issue isn't important enough to alert. 
-                    Review and adjust alerts monthly. Target: &lt;2 pages/week per person. More = alert fatigue.
+                    If an alert fires and no action is taken, either the alert
+                    threshold is wrong or the issue isn't important enough to
+                    alert. Review and adjust alerts monthly. Target: &lt;2
+                    pages/week per person. More = alert fatigue.
                   </p>
                 </div>
               </div>
@@ -1160,7 +1405,9 @@ export default function ComputeRuntime() {
               Master Kubernetes concepts
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Understand the core building blocks of Kubernetes: Pods, Services, Deployments, ConfigMaps, Secrets, Ingress, Service Mesh, and when to use StatefulSets.
+              Understand the core building blocks of Kubernetes: Pods, Services,
+              Deployments, ConfigMaps, Secrets, Ingress, Service Mesh, and when
+              to use StatefulSets.
             </p>
           </div>
 
@@ -1180,7 +1427,9 @@ export default function ComputeRuntime() {
               How services find each other
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Learn how distributed systems discover and communicate with services using client-side vs server-side patterns, and explore tools like Consul, etcd, and Kubernetes DNS.
+              Learn how distributed systems discover and communicate with
+              services using client-side vs server-side patterns, and explore
+              tools like Consul, etcd, and Kubernetes DNS.
             </p>
           </div>
 
@@ -1200,7 +1449,8 @@ export default function ComputeRuntime() {
               Extend apps without code changes
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Discover how sidecar containers add logging, monitoring, and proxy capabilities to applications without modifying their code.
+              Discover how sidecar containers add logging, monitoring, and proxy
+              capabilities to applications without modifying their code.
             </p>
           </div>
 
@@ -1220,7 +1470,9 @@ export default function ComputeRuntime() {
               Simplify external API calls
             </h2>
             <p className="text-lg text-slate-600 max-w-4xl">
-              Learn how ambassador sidecars handle outbound connections with rate limiting, authentication, retries, and service versioning—and how they differ from Service Mesh and API Gateway.
+              Learn how ambassador sidecars handle outbound connections with
+              rate limiting, authentication, retries, and service versioning—and
+              how they differ from Service Mesh and API Gateway.
             </p>
           </div>
 
@@ -1230,17 +1482,20 @@ export default function ComputeRuntime() {
         {/* Navigation */}
         <section className="py-6">
           <div className="flex justify-between items-center">
-            <button onClick={() => nav("/data-architecture")} className="btn-secondary">
+            <button
+              onClick={() => nav("/data-architecture")}
+              className="btn-secondary"
+            >
               ← Previous: Data Architecture
             </button>
             <div className="flex items-center gap-3">
-              <button
-                onClick={() => nav("/")}
-                className="btn-tertiary"
-              >
+              <button onClick={() => nav("/")} className="btn-tertiary">
                 Home
               </button>
-              <button onClick={() => nav("/apis-integration")} className="btn-primary">
+              <button
+                onClick={() => nav("/apis-integration")}
+                className="btn-primary"
+              >
                 Next: APIs Integration →
               </button>
             </div>

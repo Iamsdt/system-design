@@ -417,7 +417,7 @@ export class ProductsController {
       </div>
 
       {/* What is OpenAPI? */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <div className="flex items-start gap-4 mb-6">
           <FileText className="w-8 h-8 text-blue-600 mt-1" />
           <div>
@@ -485,7 +485,7 @@ export class ProductsController {
           <h5 className="text-xl font-bold text-slate-900 mb-6">{currentApproach.name}</h5>
 
           {/* Workflow */}
-          <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-lg p-6 mb-6">
+          <div className=" from-slate-50 to-slate-100 rounded-lg p-6 mb-6">
             <h6 className="font-bold text-slate-900 mb-4">Typical Workflow</h6>
             <div className="space-y-3">
               {currentApproach.workflow.map((step, idx) => (
@@ -548,7 +548,7 @@ export class ProductsController {
       </div>
 
       {/* OpenAPI Specification Example */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+      <div className=" from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">OpenAPI Specification Example</h4>
         <p className="text-slate-600 mb-6">
           A complete OpenAPI 3.0 spec for an e-commerce API. This single file describes all endpoints, request/response schemas, authentication, and more.
@@ -624,7 +624,7 @@ export class ProductsController {
       </div>
 
       {/* Code Generation Tools */}
-      <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl p-6 border-2 border-slate-200">
+      <div className=" from-slate-50 to-slate-100 rounded-2xl p-6 border-2 border-slate-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">Code Generation & Tooling</h4>
         
         <div className="grid md:grid-cols-2 gap-6">
@@ -703,7 +703,7 @@ https://editor.swagger.io`}
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200">
+      <div className=" from-green-50 to-emerald-50 rounded-xl p-6 border-2 border-green-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <ExternalLink className="w-5 h-5 text-green-600" />
           Real-World OpenAPI Specs
@@ -737,7 +737,7 @@ https://editor.swagger.io`}
       </div>
 
       {/* Best Practices */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">Best Practices</h4>
         
         <div className="grid md:grid-cols-2 gap-4">
@@ -798,7 +798,7 @@ https://editor.swagger.io`}
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

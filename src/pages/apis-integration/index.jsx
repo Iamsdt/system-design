@@ -150,7 +150,7 @@ export default function ApisIntegration() {
 
           {/* Deep Dive: REST API Design */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
+            <div className=" from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-blue-900 mb-6">Deep Dive: REST API Design</h3>
               
               <div className="space-y-6">
@@ -203,7 +203,7 @@ export default function ApisIntegration() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-200 rounded-2xl p-8">
+            <div className=" from-teal-50 to-cyan-50 border-2 border-teal-200 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-teal-900 mb-6">Deep Dive: gRPC & Protocol Buffers</h3>
               
               <div className="space-y-6">
@@ -267,7 +267,7 @@ export default function ApisIntegration() {
           </div>
 
           <div className="space-y-6 mb-12">
-            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8">
+            <div className=" from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-purple-900 mb-6">API Gateway Pattern</h3>
               <p className="text-slate-700 mb-6">
                 Instead of clients calling services directly (Mesh), they call a Gateway. The Gateway handles cross-cutting concerns, decoupling the client from the internal microservices architecture.
@@ -296,7 +296,7 @@ export default function ApisIntegration() {
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8">
+            <div className=" from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-amber-900 mb-6">Rate Limiting Algorithms</h3>
               <p className="text-slate-700 mb-6 text-sm">
                 Protecting your services from abuse and spikes
@@ -411,7 +411,7 @@ export default function ApisIntegration() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-rose-50 border-2 border-red-200 rounded-2xl p-8">
+          <div className=" from-red-50 to-rose-50 border-2 border-red-200 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-red-900 mb-6">Resilience Patterns</h3>
             <p className="text-slate-700 mb-6 text-sm">
               Handling failures in asynchronous systems
@@ -459,7 +459,7 @@ export default function ApisIntegration() {
           <div className="bg-white border-2 border-slate-200 rounded-2xl shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
-                <thead className="bg-gradient-to-r from-cyan-50 to-blue-50 text-slate-900 font-semibold">
+                <thead className=" from-cyan-50 to-blue-50 text-slate-900 font-semibold">
                   <tr>
                     <th className="p-4">Technology</th>
                     <th className="p-4">Direction</th>

@@ -40,7 +40,7 @@ function SLOErrorBudgetCalculator() {
   return (
     <div className="bg-white border-2 border-red-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-red-500 to-pink-600 flex items-center justify-center text-white text-2xl">
           📊
         </div>
         <div>
@@ -95,7 +95,7 @@ function SLOErrorBudgetCalculator() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl p-4 space-y-2">
+        <div className=" from-red-50 to-pink-50 rounded-xl p-4 space-y-2">
           <div className="flex justify-between items-center">
             <span className="text-sm text-slate-700">Uptime:</span>
             <span className="font-bold text-green-700">{calculations.uptime}%</span>
@@ -163,7 +163,7 @@ function RateLimiterSimulator() {
   return (
     <div className="bg-white border-2 border-indigo-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-indigo-500 to-purple-600 flex items-center justify-center text-white text-2xl">
           🚦
         </div>
         <div>
@@ -291,7 +291,7 @@ function CircuitBreakerSimulator() {
   return (
     <div className="bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl">
           ⚡
         </div>
         <div>
@@ -393,7 +393,7 @@ function DRScenarioPlanner() {
   return (
     <div className="bg-white border-2 border-blue-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-blue-500 to-cyan-600 flex items-center justify-center text-white text-2xl">
           🛡️
         </div>
         <div>
@@ -441,7 +441,7 @@ function DRScenarioPlanner() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 space-y-3">
+        <div className=" from-blue-50 to-cyan-50 rounded-xl p-4 space-y-3">
           <div>
             <div className="text-sm font-semibold text-slate-900 mb-1">
               Recommended Strategy:
@@ -560,7 +560,7 @@ export default function ReliabilityResilience() {
 
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8">
+              <div className=" from-red-50 to-pink-50 border-2 border-red-200 rounded-2xl p-8">
                 <div className="flex items-start gap-4">
                   <div className="text-4xl">💡</div>
                   <div>
@@ -769,7 +769,7 @@ export default function ReliabilityResilience() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8 mt-8">
+          <div className=" from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8 mt-8">
             <h3 className="text-xl font-bold text-slate-900 mb-4">Bulkheads</h3>
             <p className="text-slate-700 leading-relaxed">
               Isolate resources (thread pools, connections) so one failing component
@@ -932,7 +932,7 @@ export default function ReliabilityResilience() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl p-8">
+          <div className=" from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl p-8">
             <h3 className="text-xl font-bold text-slate-900 mb-4">
               Leader Election Use Cases
             </h3>

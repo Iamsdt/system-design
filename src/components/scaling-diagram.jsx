@@ -11,7 +11,7 @@ export default function ScalingDiagram({ className }) {
       <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-orange-100">
         <div className="text-3xl">📊</div>
         <div className="flex-1">
-          <h4 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">
+          <h4 className="text-2xl font-bold  from-orange-600 to-amber-600 bg-clip-text text-transparent">
             Vertical vs Horizontal Scaling
           </h4>
           <div className="text-sm text-slate-600 mt-1">
@@ -25,7 +25,7 @@ export default function ScalingDiagram({ className }) {
           onClick={() => setScale("vertical")}
           className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
             scale === "vertical"
-              ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg scale-105"
+              ? " from-orange-500 to-amber-500 text-white shadow-lg scale-105"
               : "bg-white text-slate-700 hover:bg-slate-100 hover:scale-102"
           }`}
         >
@@ -35,7 +35,7 @@ export default function ScalingDiagram({ className }) {
           onClick={() => setScale("horizontal")}
           className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
             scale === "horizontal"
-              ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg scale-105"
+              ? " from-orange-500 to-amber-500 text-white shadow-lg scale-105"
               : "bg-white text-slate-700 hover:bg-slate-100 hover:scale-102"
           }`}
         >
@@ -64,8 +64,8 @@ export default function ScalingDiagram({ className }) {
 
       <div className="flex flex-col lg:flex-row items-start gap-6">
         {scale === "vertical" ? (
-          <div className="flex-1 flex flex-col items-center gap-4 p-6 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200">
-            <div className="w-48 h-48 rounded-2xl border-4 border-orange-300 flex flex-col items-center justify-center bg-gradient-to-br from-orange-100 to-white shadow-lg">
+          <div className="flex-1 flex flex-col items-center gap-4 p-6  from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200">
+            <div className="w-48 h-48 rounded-2xl border-4 border-orange-300 flex flex-col items-center justify-center  from-orange-100 to-white shadow-lg">
               <div className="text-4xl mb-2">🖥️</div>
               <div className="text-slate-900 font-bold text-lg">
                 Bigger Server
@@ -89,12 +89,12 @@ export default function ScalingDiagram({ className }) {
             </div>
           </div>
         ) : (
-          <div className="flex-1 p-6 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200">
+          <div className="flex-1 p-6  from-orange-50 to-amber-50 rounded-xl border-2 border-orange-200">
             <div className="flex flex-wrap gap-3 justify-center mb-4">
               {Array.from({ length: Math.min(serverCount, 12) }).map((_, i) => (
                 <div
                   key={i}
-                  className="w-20 h-20 rounded-lg border-2 border-orange-300 bg-gradient-to-br from-white to-orange-50 flex flex-col items-center justify-center shadow-md hover:scale-105 transition-transform duration-200"
+                  className="w-20 h-20 rounded-lg border-2 border-orange-300  from-white to-orange-50 flex flex-col items-center justify-center shadow-md hover:scale-105 transition-transform duration-200"
                 >
                   <div className="text-xl">📦</div>
                   <div className="text-xs font-semibold text-slate-600">
@@ -127,7 +127,7 @@ export default function ScalingDiagram({ className }) {
           </div>
         )}
 
-        <div className="lg:w-56 p-4 bg-gradient-to-br from-orange-50 to-amber-50 border-2 border-orange-200 rounded-xl shadow-inner">
+        <div className="lg:w-56 p-4  from-orange-50 to-amber-50 border-2 border-orange-200 rounded-xl shadow-inner">
           <div className="font-bold text-orange-900 mb-3 text-base">
             🎯 When to choose:
           </div>

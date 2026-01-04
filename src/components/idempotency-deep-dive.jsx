@@ -61,7 +61,7 @@ export default function IdempotencyDeepDive() {
       </div>
 
       {/* What is Idempotency */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+      <div className=" from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
         <div className="flex items-start gap-4 mb-6">
           <div className="text-purple-600 mt-1">
             <Shield className="w-8 h-8" />
@@ -104,7 +104,7 @@ export default function IdempotencyDeepDive() {
       </div>
 
       {/* Interactive Simulation */}
-      <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
           <RefreshCw className="w-6 h-6 text-blue-600" />
           Interactive Simulation: Payment Processing
@@ -310,7 +310,7 @@ await fetch('/api/payment', {
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 border-2 border-emerald-200">
+      <div className=" from-emerald-50 to-teal-50 rounded-2xl p-8 border-2 border-emerald-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">Real-World Examples</h4>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -408,7 +408,7 @@ await putItem({
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

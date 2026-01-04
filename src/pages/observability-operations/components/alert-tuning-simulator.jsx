@@ -39,7 +39,7 @@ export default function AlertTuningSimulator() {
   return (
     <div className="bg-white border-2 border-orange-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-orange-500 to-red-600 flex items-center justify-center text-white text-2xl">
           🔔
         </div>
         <div>

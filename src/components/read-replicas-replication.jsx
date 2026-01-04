@@ -402,7 +402,7 @@ const ReadReplicasReplication = () => {
       </div>
 
       {/* Replication Lag */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 p-6 rounded-lg border-2 border-amber-200">
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-xl font-bold flex items-center gap-2">
             <Clock className="w-6 h-6 text-amber-600" />
@@ -483,7 +483,7 @@ const ReadReplicasReplication = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
+        <div className=" from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-4xl">{selectedConflictData.icon}</span>
             <div>
@@ -537,7 +537,7 @@ const ReadReplicasReplication = () => {
       </div>
 
       {/* Consistency Levels */}
-      <div className="bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
+      <div className=" from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
         <h4 className="text-xl font-bold mb-4 text-center">Consistency Levels</h4>
         
         <div className="space-y-3">
@@ -583,7 +583,7 @@ const ReadReplicasReplication = () => {
         
         <div className="grid md:grid-cols-2 gap-4">
           {Object.entries(failoverScenarios).map(([key, scenario]) => (
-            <div key={key} className="bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-lg border-2 border-blue-200">
+            <div key={key} className=" from-blue-50 to-indigo-50 p-5 rounded-lg border-2 border-blue-200">
               <h5 className="text-xl font-bold mb-2">{scenario.name}</h5>
               <p className="text-sm text-gray-700 mb-4">{scenario.description}</p>
 

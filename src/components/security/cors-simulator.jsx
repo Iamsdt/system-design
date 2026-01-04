@@ -215,7 +215,7 @@ const CorsSimulator = () => {
   return (
     <div className="bg-white border-2 border-slate-200 rounded-2xl p-6 shadow-xl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-slate-700 to-slate-900 flex items-center justify-center text-white text-2xl">
           🌐
         </div>
         <div>

@@ -157,7 +157,7 @@ export default function CheatSheets() {
         )}
 
         {/* Call to Action */}
-        <div className="mt-16 bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8 text-center">
+        <div className="mt-16  from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8 text-center">
           <h3 className="text-2xl font-bold text-slate-900 mb-4">
             Want to contribute?
           </h3>

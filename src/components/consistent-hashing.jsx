@@ -348,11 +348,11 @@ export default function ConsistentHashing() {
             </div>
             <div className="mt-4 flex items-center justify-center gap-4 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500"></div>
+                <div className="w-3 h-3 rounded-full  from-blue-500 to-cyan-500"></div>
                 <span className="text-slate-600">Physical Server</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
+                <div className="w-2 h-2 rounded-full  from-purple-500 to-pink-500"></div>
                 <span className="text-slate-600">Virtual Node</span>
               </div>
               <div className="flex items-center gap-2">
@@ -380,7 +380,7 @@ export default function ConsistentHashing() {
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 rounded-full bg-gradient-to-br ${serverData?.color || 'from-slate-400 to-slate-500'}`}></div>
+                          <div className={`w-3 h-3 rounded-full  ${serverData?.color || 'from-slate-400 to-slate-500'}`}></div>
                           <span className="text-sm font-semibold text-slate-900">{server}</span>
                         </div>
                         <div className="text-sm font-bold text-slate-900">
@@ -389,7 +389,7 @@ export default function ConsistentHashing() {
                       </div>
                       <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
                         <div
-                          className={`h-full bg-gradient-to-r ${serverData?.color || 'from-slate-400 to-slate-500'} transition-all duration-500`}
+                          className={`h-full  ${serverData?.color || 'from-slate-400 to-slate-500'} transition-all duration-500`}
                           style={{ width: `${percentage}%` }}
                         ></div>
                       </div>

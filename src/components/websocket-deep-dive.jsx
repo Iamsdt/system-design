@@ -459,7 +459,7 @@ eventSource.onmessage = (event) => {
       </div>
 
       {/* Best Practices */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+      <div className="border border-blue-200 rounded-xl p-6">
         <h3 className="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
           <Radio className="w-5 h-5" />
           Production Best Practices

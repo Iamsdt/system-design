@@ -229,7 +229,7 @@ eventBus.on('UserCreated', async (event) => {
       </div>
 
       {/* The Core Principle */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <div className="flex items-start gap-4 mb-6">
           <GitBranch className="w-8 h-8 text-blue-600 mt-1" />
           <div>
@@ -382,7 +382,7 @@ eventBus.on('UserCreated', async (event) => {
       </div>
 
       {/* Implementation Patterns */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+      <div className=" from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">Implementation Patterns</h4>
 
         <div className="space-y-6">
@@ -629,7 +629,7 @@ class OrderCreatedHandler {
       </div>
 
       {/* When to Use */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">When to Use CQRS</h4>
         
         <div className="grid md:grid-cols-2 gap-6">
@@ -688,7 +688,7 @@ class OrderCreatedHandler {
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
+      <div className=" from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">Real-World Examples</h4>
         
         <div className="space-y-3">
@@ -719,7 +719,7 @@ class OrderCreatedHandler {
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

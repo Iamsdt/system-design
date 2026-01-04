@@ -17,7 +17,7 @@ export default function CourseCard({ module, onView }) {
           </p>
         </div>
 
-        <div className="ml-4 w-12 h-12 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center group-hover:from-blue-100 group-hover:to-blue-200 transition-all">
+        <div className="ml-4 w-12 h-12 rounded-lg  from-blue-50 to-blue-100 flex items-center justify-center group-hover:from-blue-100 group-hover:to-blue-200 transition-all">
           <svg
             className="w-6 h-6 text-blue-600"
             fill="none"

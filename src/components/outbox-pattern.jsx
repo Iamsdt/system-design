@@ -280,7 +280,7 @@ async function createOrder(orderData) {
       </div>
 
       {/* The Problem */}
-      <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl p-8 border-2 border-red-200">
+      <div className=" from-red-50 to-orange-50 rounded-2xl p-8 border-2 border-red-200">
         <div className="flex items-start gap-4 mb-6">
           <AlertTriangle className="w-8 h-8 text-red-600 mt-1" />
           <div>
@@ -417,7 +417,7 @@ async function createOrder(orderData) {
       </div>
 
       {/* Interactive Simulation */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
           <RefreshCw className="w-6 h-6 text-blue-600" />
           Interactive: Outbox Pattern Flow
@@ -512,9 +512,9 @@ async function createOrder(orderData) {
             >
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
                 idx === simulationStep
-                  ? 'bg-blue-500 text-white'
+                  ? 'bg-blue-500 '
                   : idx < simulationStep
-                  ? 'bg-green-500 text-white'
+                  ? 'bg-green-500 '
                   : 'bg-slate-300 text-slate-500'
               }`}>
                 {idx + 1}
@@ -684,7 +684,7 @@ await db.outbox.create({
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
+      <div className=" from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">Real-World Implementations</h4>
         
         <div className="space-y-3">
@@ -715,7 +715,7 @@ await db.outbox.create({
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

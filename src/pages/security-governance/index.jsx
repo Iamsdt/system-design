@@ -225,7 +225,7 @@ export default function SecurityGovernance() {
                   <li>Retention 30–90 days; alerts on anomalies</li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-lg">
+              <div className=" from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-lg">
                 <h3 className="text-lg font-bold text-slate-900 mb-3">Data Residency</h3>
                 <ul className="text-sm text-slate-700 space-y-1 list-disc ml-4">
                   <li>Regional data stores; avoid cross-region replication by default</li>

@@ -345,7 +345,7 @@ const AcidVsBase = () => {
         </div>
 
         {/* Scenario Details */}
-        <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
+        <div className=" from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
           <div className="flex items-center justify-between mb-4">
             <h5 className="text-xl font-bold flex items-center gap-2">
               <span className="text-3xl">{selectedScenarioData.icon}</span>
@@ -356,7 +356,7 @@ const AcidVsBase = () => {
                 ? 'bg-blue-600 text-white'
                 : selectedScenarioData.recommended === 'base'
                 ? 'bg-purple-600 text-white'
-                : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                : ' from-blue-600 to-purple-600 text-white'
             }`}>
               {selectedScenarioData.recommended === 'acid' ? '→ Use ACID' :
                selectedScenarioData.recommended === 'base' ? '→ Use BASE' :
@@ -400,7 +400,7 @@ const AcidVsBase = () => {
       </div>
 
       {/* Decision Framework */}
-      <div className="bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
+      <div className=" from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
         <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
           <TrendingUp className="w-6 h-6 text-gray-700" />
           Quick Decision Framework
@@ -460,7 +460,7 @@ const AcidVsBase = () => {
           </div>
         </div>
 
-        <div className="mt-4 bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border-2 border-indigo-200">
+        <div className="mt-4  from-blue-50 to-purple-50 p-4 rounded-lg border-2 border-indigo-200">
           <h5 className="font-bold text-indigo-900 mb-2">💡 Pro Tip: Hybrid Approach</h5>
           <p className="text-sm text-gray-700">
             Many modern systems use BOTH! Use ACID for critical data (payments, inventory) and BASE for 

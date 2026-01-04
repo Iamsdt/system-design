@@ -568,7 +568,7 @@ Gradually increase v2 traffic: 10% → 50% → 100%`
       </div>
 
       {/* Pattern Details */}
-      <div className="bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-950 dark:to-amber-950 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
+      <div className=" from-orange-50 to-amber-50 dark:from-orange-950 dark:to-amber-950 p-6 rounded-lg border border-orange-200 dark:border-orange-800">
         <div className="flex items-start gap-4 mb-4">
           <div className="text-4xl">{patterns[selectedPattern].icon}</div>
           <div className="flex-1">
@@ -662,7 +662,7 @@ Gradually increase v2 traffic: 10% → 50% → 100%`
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className=" from-blue-50 to-indigo-50 dark:from-blue-950 dark:to-indigo-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
           <h5 className="text-lg font-bold mb-2">{useCases[selectedUseCase].name}</h5>
           <p className="text-muted-foreground mb-4">{useCases[selectedUseCase].description}</p>
 

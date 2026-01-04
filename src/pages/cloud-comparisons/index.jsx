@@ -44,7 +44,7 @@ const HeroSection = () => (
 
       <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-tight reveal transition-all duration-700 delay-100">
         Cloud Service <br />
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+        <span className="text-transparent bg-clip-text  from-blue-600 to-purple-600">
           Comparisons
         </span>
       </h1>

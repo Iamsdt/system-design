@@ -565,7 +565,7 @@ Same app image, different sidecar config!`
       </div>
 
       {/* Sidecar Type Details */}
-      <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
+      <div className="from-purple-50 to-pink-50 dark:from-purple-950 dark:to-pink-950 p-6 rounded-lg border border-purple-200 dark:border-purple-800">
         <div className="flex items-start gap-4 mb-4">
           <div className="text-4xl">{sidecarTypes[selectedType].icon}</div>
           <div className="flex-1">
@@ -687,7 +687,7 @@ Same app image, different sidecar config!`
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className=" from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
           <h5 className="text-lg font-bold mb-2">{scenarios[selectedScenario].name}</h5>
           <p className="text-muted-foreground mb-4">{scenarios[selectedScenario].description}</p>
 

@@ -273,7 +273,7 @@ button:disabled {
 .module-hero h1 {
   text-shadow: 0 6px 18px rgba(2,6,23,0.4);
 }
-.module-hero .bg-gradient-to-r { /* make hero gradient crisper */
+.module-hero { /* make hero gradient crisper */
   filter: saturate(1.05) contrast(1.05);
 }
 

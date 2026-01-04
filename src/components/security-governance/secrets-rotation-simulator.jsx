@@ -28,7 +28,7 @@ export default function SecretsRotationSimulator() {
   return (
     <div className="bg-white border-2 border-amber-200 rounded-2xl p-6 shadow-xl h-full">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-amber-500 to-orange-600 flex items-center justify-center text-white text-2xl">
           🔑
         </div>
         <div>

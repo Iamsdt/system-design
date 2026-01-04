@@ -20,7 +20,7 @@ export default function AccessControlComparison() {
   return (
     <div className="bg-white border-2 border-teal-200 rounded-2xl p-6 shadow-xl h-full">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white text-2xl">
+        <div className="w-12 h-12 rounded-xl  from-teal-500 to-emerald-600 flex items-center justify-center text-white text-2xl">
           🧭
         </div>
         <div>

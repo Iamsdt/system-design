@@ -28,7 +28,7 @@ export default function InteractiveCAP({ className }) {
       <div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-purple-100">
         <div className="text-3xl">🎯</div>
         <div className="flex-1">
-          <h4 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          <h4 className="text-2xl font-bold  from-purple-600 to-pink-600 bg-clip-text text-transparent">
             CAP Theorem — Interactive
           </h4>
           <div className="text-sm text-slate-600 mt-1">
@@ -45,7 +45,7 @@ export default function InteractiveCAP({ className }) {
               onClick={() => setChoice(k)}
               className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                 choice === k
-                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg scale-105"
+                  ? " from-purple-500 to-pink-500 text-white shadow-lg scale-105"
                   : "bg-slate-100 text-slate-700 hover:bg-slate-200 hover:scale-102"
               }`}
             >
@@ -55,7 +55,7 @@ export default function InteractiveCAP({ className }) {
         </div>
 
         <div className="flex-1">
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl p-5 shadow-inner">
+          <div className=" from-purple-50 to-pink-50 border-2 border-purple-200 rounded-xl p-5 shadow-inner">
             <h5 className="font-bold text-lg text-purple-900 mb-2">
               {captions[choice].title}
             </h5>
@@ -150,7 +150,7 @@ export default function InteractiveCAP({ className }) {
         </div>
       </div>
 
-      <div className="mt-6 pt-4 border-t border-purple-100 bg-gradient-to-r from-purple-50/50 to-pink-50/50 rounded-lg p-4 text-sm text-slate-700">
+      <div className="mt-6 pt-4 border-t border-purple-100  from-purple-50/50 to-pink-50/50 rounded-lg p-4 text-sm text-slate-700">
         <p className="mb-2">
           <span className="font-semibold text-purple-700">🤔 Why:</span>{" "}
           Understanding the CAP theorem helps you pick a database and

@@ -94,7 +94,7 @@ export default function Foundations() {
 
             <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
               Foundations & <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <span className="text-transparent bg-clip-text  from-blue-600 to-indigo-600">
                 Back-of-Envelope
               </span>
             </h1>
@@ -380,7 +380,7 @@ export default function Foundations() {
           {/* Glossary removed as per design request */}
 
           {/* The Learning Path */}
-          <div className="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-100 rounded-3xl p-8 md:p-12">
+          <div className=" from-indigo-50 to-blue-50 border border-indigo-100 rounded-3xl p-8 md:p-12">
             <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-3">
               <Map className="w-7 h-7 text-indigo-600" />
               Your Learning Journey

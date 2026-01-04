@@ -357,12 +357,12 @@ const OltpVsOlapExpanded = () => {
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
+      <div className=" from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
         <h4 className="text-xl font-bold mb-4 text-center">Side-by-Side Comparison</h4>
         
         <div className="bg-white rounded-lg overflow-hidden border border-gray-200">
           <table className="w-full">
-            <thead className="bg-gradient-to-r from-blue-100 to-purple-100">
+            <thead className=" from-blue-100 to-purple-100">
               <tr>
                 <th className="px-4 py-3 text-left font-bold">Aspect</th>
                 <th className="px-4 py-3 text-center font-bold text-blue-700">OLTP</th>
@@ -507,7 +507,7 @@ const OltpVsOlapExpanded = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
+        <div className=" from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-4xl">{selectedHybridData.icon}</span>
             <div>
@@ -558,7 +558,7 @@ const OltpVsOlapExpanded = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg border-l-4 border-indigo-400">
+          <div className=" from-blue-50 to-purple-50 p-4 rounded-lg border-l-4 border-indigo-400">
             <h6 className="font-bold mb-2">Use Case:</h6>
             <p className="text-sm text-gray-700">{selectedHybridData.useCase}</p>
           </div>

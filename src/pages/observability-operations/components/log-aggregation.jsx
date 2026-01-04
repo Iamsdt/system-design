@@ -408,7 +408,7 @@ export default function LogAggregation() {
         <CardContent>
           <div className="space-y-4">
             {costOptimization.map((strategy, idx) => (
-              <div key={idx} className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6">
+              <div key={idx} className=" from-green-50 to-blue-50 rounded-lg p-6">
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <h5 className="text-xl font-bold text-slate-900">{strategy.strategy}</h5>

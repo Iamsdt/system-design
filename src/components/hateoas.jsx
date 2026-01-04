@@ -218,7 +218,7 @@ Accept: application/json`,
       </div>
 
       {/* What is HATEOAS? */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <div className="flex items-start gap-4 mb-6">
           <Link2 className="w-8 h-8 text-blue-600 mt-1" />
           <div>
@@ -346,7 +346,7 @@ if (order._links.cancel) {
       </div>
 
       {/* Interactive State Machine */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+      <div className=" from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">
           Interactive Example: Order State Machine
         </h4>
@@ -593,7 +593,7 @@ if (order._links.cancel) {
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-2xl p-6 border-2 border-slate-200">
+      <div className=" from-slate-50 to-slate-100 rounded-2xl p-6 border-2 border-slate-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">Real-World Examples</h4>
         
         <div className="space-y-4">
@@ -656,7 +656,7 @@ if (order._links.cancel) {
       </div>
 
       {/* When to Use */}
-      <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">When to Use HATEOAS</h4>
         
         <div className="grid md:grid-cols-2 gap-6">
@@ -707,7 +707,7 @@ if (order._links.cancel) {
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

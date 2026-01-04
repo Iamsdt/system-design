@@ -30,7 +30,7 @@ export default function AvailabilityCalculator({ className }) {
       <div className="flex items-center justify-between mb-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white text-xl">
+            <div className="w-10 h-10 rounded-lg  from-green-500 to-green-600 flex items-center justify-center text-white text-xl">
               ✅
             </div>
             <div>
@@ -104,7 +104,7 @@ export default function AvailabilityCalculator({ className }) {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-green-50 to-emerald-100 border-2 border-green-300 rounded-xl p-5 text-center">
+      <div className=" from-green-50 to-emerald-100 border-2 border-green-300 rounded-xl p-5 text-center">
         <div className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-2">
           Parallel Availability
         </div>

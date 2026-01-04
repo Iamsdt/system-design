@@ -13,7 +13,7 @@ export default function PostgreSQLCheatSheet() {
   const nav = useNavigate()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen  from-slate-50 to-blue-50">
       {/* Hero Section */}
       <section className="relative gradient-overlay py-20 md:py-32 overflow-hidden">
         <div className="container-custom">
@@ -87,7 +87,7 @@ export default function PostgreSQLCheatSheet() {
                   </div>
                 ),
                 thead: ({ children }) => (
-                  <thead className="bg-gradient-to-r from-slate-100 to-slate-50">
+                  <thead className=" from-slate-100 to-slate-50">
                     {children}
                   </thead>
                 ),

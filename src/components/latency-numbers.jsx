@@ -217,7 +217,7 @@ export default function LatencyNumbers() {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-8 h-8 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center text-white`}
+                    className={`w-8 h-8 rounded-lg  ${item.color} flex items-center justify-center text-white`}
                   >
                     {item.icon}
                   </div>
@@ -241,7 +241,7 @@ export default function LatencyNumbers() {
               </div>
               <div className="relative h-8 bg-slate-100 rounded-lg overflow-hidden">
                 <div
-                  className={`absolute inset-y-0 left-0 bg-gradient-to-r ${item.color} transition-all duration-500 flex items-center justify-end px-3`}
+                  className={`absolute inset-y-0 left-0  ${item.color} transition-all duration-500 flex items-center justify-end px-3`}
                   style={{ width: `${Math.max(getBarWidth(item.ns), 2)}%` }}
                 >
                   <span className="text-xs font-semibold text-white drop-shadow opacity-0 group-hover:opacity-100 transition-opacity">

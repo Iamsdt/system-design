@@ -48,7 +48,7 @@ export default function Landing() {
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight">
               Master System Design &<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"> 
+              <span className="text-transparent bg-clip-text  from-blue-600 to-indigo-600"> 
                 Cloud Architecture
               </span>
             </h1>
@@ -99,7 +99,7 @@ export default function Landing() {
 
             {/* Creator Attribution Card */}
             <div className="inline-flex items-center gap-4 px-6 py-3 bg-white rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+              <div className="w-10 h-10 rounded-full  from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
                 ST
               </div>
               <div className="text-left">
@@ -176,7 +176,7 @@ export default function Landing() {
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-                Learn by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Building</span>
+                Learn by <span className="text-transparent bg-clip-text  from-blue-600 to-indigo-600">Building</span>
               </h2>
               <p className="text-lg text-slate-500 mx-auto leading-relaxed">
                 Master system design through hands-on tutorials with live demos, 
@@ -418,9 +418,9 @@ export default function Landing() {
             {/* Section Header */}
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-                Meet <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+                Meet <span className="relative inline-block text-transparent bg-clip-text  from-blue-400 to-teal-400">
                   the Creator
-                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-teal-400"></div>
+                  <div className="absolute -bottom-2 left-0 w-full h-1  from-blue-400 to-teal-400"></div>
                 </span>
               </h2>
             </div>
@@ -430,7 +430,7 @@ export default function Landing() {
               <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
                 {/* Avatar */}
                 <div className="flex-shrink-0">
-                  <div className="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white text-4xl font-bold shadow-xl shadow-blue-500/30 transform hover:rotate-3 transition-transform duration-300">
+                  <div className="w-32 h-32 rounded-2xl  from-blue-600 to-indigo-600 flex items-center justify-center text-white text-4xl font-bold shadow-xl shadow-blue-500/30 transform hover:rotate-3 transition-transform duration-300">
                     ST
                   </div>
                 </div>

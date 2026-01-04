@@ -472,7 +472,7 @@ public class UserServiceApplication { }
       </div>
 
       {/* Pattern Details */}
-      <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-950 dark:to-teal-950 p-6 rounded-lg border border-green-200 dark:border-green-800">
+      <div className="from-green-50 to-teal-50 dark:from-green-950 dark:to-teal-950 p-6 rounded-lg border border-green-200 dark:border-green-800">
         <div className="flex items-start gap-4 mb-4">
           <div className="text-4xl">{patterns[selectedPattern].icon}</div>
           <div className="flex-1">
@@ -608,7 +608,7 @@ public class UserServiceApplication { }
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
+        <div className=" from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950 p-6 rounded-lg border border-blue-200 dark:border-blue-800">
           <div className="flex items-start gap-4 mb-4">
             <div className="text-4xl">{tools[selectedTool].icon}</div>
             <div className="flex-1">

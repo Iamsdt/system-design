@@ -666,7 +666,7 @@ export default function Networking() {
                 disabled={isJourneyActive}
                 className={`
                   relative overflow-hidden group px-8 py-4 rounded-full font-bold text-lg shadow-lg transition-all transform hover:-translate-y-1
-                  ${isJourneyActive ? "bg-slate-100 text-slate-400 cursor-not-allowed" : "bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-blue-500/30"}
+                  ${isJourneyActive ? "bg-slate-100 text-slate-400 cursor-not-allowed" : " from-blue-600 to-indigo-600 text-white hover:shadow-blue-500/30"}
                 `}
               >
                 <span className="relative z-10 flex items-center gap-2">
@@ -680,7 +680,7 @@ export default function Networking() {
               {/* Connecting Line (Desktop) */}
               <div className="hidden md:block absolute top-[40px] left-10 right-10 h-2 bg-slate-100 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 transition-all duration-1000 ease-linear"
+                  className="h-full  from-blue-500 to-indigo-500 transition-all duration-1000 ease-linear"
                   style={{ width: `${(journeyStep / (internetHops.length - 1)) * 100}%` }}
                 ></div>
               </div>
@@ -777,7 +777,7 @@ export default function Networking() {
                     <div className="flex items-center gap-4">
                       <div
                         className={`
-                        w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold shadow-sm
+                        w-10 h-10 rounded-lg flex items-center justify-center text-black font-bold shadow-sm
                         ${layer.color}
                       `}
                       >
@@ -850,7 +850,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - DNS */}
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8 mb-8">
+          <div className=" from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-amber-900 mb-3 flex items-center gap-2">
@@ -887,7 +887,7 @@ export default function Networking() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 mb-8 text-white relative overflow-hidden">
+          <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 text-slate-900 relative overflow-hidden">
             <h3 className="text-xl font-bold mb-8 text-center">
               DNS Recursive Resolution Flow
             </h3>
@@ -910,18 +910,18 @@ export default function Networking() {
                   <div
                     className={`
                     w-16 h-16 rounded-full flex items-center justify-center text-2xl mb-2
-                    ${index === dnsStep ? "bg-blue-500 shadow-lg shadow-blue-500/50" : "bg-slate-700"}
+                    ${index === dnsStep ? "bg-white text-blue-600 shadow-lg ring-4 ring-blue-50" : "bg-slate-100 text-slate-700"}
                   `}
                   >
-                    {step.icon}
+                    <span className={`${index === dnsStep ? 'text-blue-600' : 'text-slate-700'} text-2xl`}>{step.icon}</span>
                   </div>
-                  <div className="text-sm font-medium">{step.label}</div>
+                  <div className={`text-sm font-medium ${index === dnsStep ? 'text-slate-900' : 'text-slate-700'}`}>{step.label}</div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 text-center bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-              <div className="text-cyan-400 font-mono text-lg">
+            <div className="mt-8 text-center bg-slate-50 rounded-lg p-4">
+              <div className="text-cyan-600 font-mono text-lg">
                 {dnsStep === 0 && "Where is example.com?"}
                 {dnsStep === 1 && "Asking Root Server..."}
                 {dnsStep === 2 && "Root says: Check .com TLD"}
@@ -970,7 +970,7 @@ export default function Networking() {
                       <div className="bg-orange-100 p-2 rounded shadow-sm border border-orange-200 text-xs mb-1 font-bold">
                         203.0.113.1
                       </div>
-                      <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold shadow-lg">
+                      <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center font-bold shadow-lg">
                         NAT
                       </div>
                       <div className="bg-slate-100 p-2 rounded shadow-sm border text-xs mt-1">
@@ -1149,7 +1149,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - TCP/UDP */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 mb-8">
+          <div className=" border-2 border-blue-200 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-blue-900 mb-3 flex items-center gap-2">
@@ -1361,7 +1361,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - HTTP Evolution */}
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200 rounded-2xl p-8 mb-8">
+          <div className=" border-2 border-purple-200 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-purple-900 mb-3 flex items-center gap-2">
@@ -1475,7 +1475,7 @@ export default function Networking() {
             </p>
           </div>
 
-          <div className="bg-slate-900 rounded-2xl p-8 mb-8 text-white relative overflow-hidden">
+          <div className="rounded-2xl p-8 mb-8 relative overflow-hidden">
             <div className="flex justify-between items-start mb-12 relative z-10">
               {/* Client */}
               <div className="flex flex-col items-center w-1/3">
@@ -1502,8 +1502,8 @@ export default function Networking() {
 
                   {tlsStep === 1 && (
                     <div className="animate-slide-right flex flex-col items-center">
-                      <div className="bg-blue-600 text-white text-xs px-3 py-1 rounded-full mb-2">ClientHello</div>
-                      <div className="w-40 h-1 bg-gradient-to-r from-blue-500 to-transparent"></div>
+                      <div className="bg-blue-600 text-xs px-3 py-1 rounded-full mb-2">ClientHello</div>
+                      <div className="w-40 h-1  from-blue-500 to-transparent"></div>
                       <div className="font-mono text-[10px] text-slate-300 mt-2 text-center bg-black/50 p-2 rounded">
                         "I support RSA, AES-256"<br/>
                         "Here's a random number: 492..."
@@ -1513,7 +1513,7 @@ export default function Networking() {
 
                   {tlsStep === 2 && (
                     <div className="animate-slide-left flex flex-col items-center">
-                      <div className="bg-purple-600 text-white text-xs px-3 py-1 rounded-full mb-2">ServerHello</div>
+                      <div className="bg-purple-600 text-xs px-3 py-1 rounded-full mb-2">ServerHello</div>
                       <div className="w-40 h-1 bg-gradient-to-l from-purple-500 to-transparent"></div>
                        <div className="font-mono text-[10px] text-slate-300 mt-2 text-center bg-black/50 p-2 rounded">
                         "Let's use AES-256"<br/>
@@ -1540,7 +1540,7 @@ export default function Networking() {
                       <div className="font-bold text-green-400 text-xl">Specific Channel Established</div>
                       <button
                         onClick={() => setTlsStep(0)}
-                        className="mt-6 text-sm text-slate-400 hover:text-white underline"
+                        className="mt-6 text-sm text-slate-400 hover:text-black underline"
                       >
                         Replay
                       </button>
@@ -1592,7 +1592,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - CDN */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-8 mb-8">
+          <div className="border-2 border-green-200 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-green-900 mb-3 flex items-center gap-2">
@@ -1630,7 +1630,7 @@ export default function Networking() {
           </div>
 
           {/* Interactive CDN Demo */}
-          <div className="bg-slate-900 rounded-2xl p-8 mb-8 text-white relative overflow-hidden min-h-[400px]">
+          <div className="rounded-2xl p-8 mb-8 relative overflow-hidden min-h-[400px]">
             {/* Controls */}
             <div className="absolute top-6 right-6 z-20 flex gap-4">
               <button
@@ -1761,7 +1761,7 @@ export default function Networking() {
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 rounded-xl  from-purple-500 to-pink-600 flex items-center justify-center text-2xl">
                   📤
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900">Push CDN</h3>
@@ -1823,7 +1823,7 @@ export default function Networking() {
 
             <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 rounded-xl  from-blue-500 to-cyan-600 flex items-center justify-center text-2xl">
                   📥
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900">Pull CDN</h3>
@@ -1888,12 +1888,12 @@ export default function Networking() {
 
           {/* CDN Cache Strategies */}
           <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm mb-8">
-            <h3 className="text-2xl font-bold text-slate-900 mb-6">
+            <h3 className="text-2xl font-bold text-slate-900">
               CDN Cache Invalidation Strategies
             </h3>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+              <div className="rounded-lg p-6 border border-blue-200">
                 <div className="text-3xl mb-3">⏰</div>
                 <h4 className="font-bold text-slate-900 mb-3">
                   Time-Based (TTL)
@@ -1913,7 +1913,7 @@ export default function Networking() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6 border border-purple-200">
+              <div className="rounded-lg p-6 border border-purple-200">
                 <div className="text-3xl mb-3">🔄</div>
                 <h4 className="font-bold text-slate-900 mb-3">Version-Based</h4>
                 <p className="text-sm text-slate-700 mb-3">
@@ -1933,7 +1933,7 @@ export default function Networking() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
+              <div className="rounded-lg p-6 border border-green-200">
                 <div className="text-3xl mb-3">🗑️</div>
                 <h4 className="font-bold text-slate-900 mb-3">Manual Purge</h4>
                 <p className="text-sm text-slate-700 mb-3">
@@ -1954,7 +1954,7 @@ export default function Networking() {
           </div>
 
           {/* Real-World CDN Metrics */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-8">
+          <div className=" border border-blue-200 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-slate-900 mb-6">
               CDN Performance Impact
             </h3>
@@ -2072,7 +2072,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - Load Balancing */}
-          <div className="bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-200 rounded-2xl p-8 mb-8">
+          <div className="border-2 border-cyan-200 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-cyan-900 mb-3 flex items-center gap-2">
@@ -2239,7 +2239,7 @@ export default function Networking() {
               ].map((algo, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200"
+                  className=" from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-3xl">{algo.icon}</span>
@@ -2620,7 +2620,7 @@ export default function Networking() {
           </div>
 
           {/* Why/How/When/Trade-offs - Optimizations */}
-          <div className="bg-gradient-to-br from-slate-50 to-gray-50 border-2 border-slate-300 rounded-2xl p-8 mb-8">
+          <div className=" from-slate-50 to-gray-50 border-2 border-slate-300 rounded-2xl p-8 mb-8">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
@@ -2658,28 +2658,28 @@ export default function Networking() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
+              <div className="p-6 rounded-xl border border-slate-300 bg-white shadow-sm">
               <div className="text-3xl mb-4">🔐</div>
-              <h4 className="font-bold text-lg mb-2 text-white">TLS Termination</h4>
-              <p className="text-sm text-slate-300">
+              <h4 className="font-bold text-lg mb-2">TLS Termination</h4>
+              <p className="text-sm">
                 Decrypting HTTPS at the Load Balancer/Proxy instead of the web
                 server. Saves CPU on application servers.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
+            <div className="p-6 rounded-xl border border-slate-300 bg-white shadow-sm">
               <div className="text-3xl mb-4">🏊‍♂️</div>
-              <h4 className="font-bold text-lg mb-2 text-white">Connection Pooling</h4>
-              <p className="text-sm text-slate-300">
+              <h4 className="font-bold text-lg mb-2">Connection Pooling</h4>
+              <p className="text-sm">
                 Reusing existing DB/Service connections instead of opening a new
                 one for every request. Avoids handshake overhead.
               </p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-500 to-slate-900 text-white p-6 rounded-xl">
+            <div className="p-6 rounded-xl border border-slate-300 bg-white shadow-sm">
               <div className="text-3xl mb-4">🗜️</div>
-              <h4 className="font-bold text-lg mb-2 text-white">Compression</h4>
-              <p className="text-sm text-slate-300">
+              <h4 className="font-bold text-lg mb-2">Compression</h4>
+              <p className="text-sm">
                 Using Gzip/Brotli to shrink payloads. Large text files
                 (JSON/HTML) can shrink by 70%+, saving bandwidth.
               </p>
@@ -2692,7 +2692,7 @@ export default function Networking() {
           ref={(element) => (sectionsReference.current[12] = element)}
           className=" transition-all duration-700 mb-8"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-12 text-center">
+          <div className=" from-blue-600 to-indigo-600 rounded-2xl p-12 text-center">
             <h2 className="text-4xl font-bold text-white mb-4">
               Network Mastered! 🌐
             </h2>
@@ -2723,11 +2723,11 @@ export default function Networking() {
         </section>
       </div>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         .bg-grid-slate-100 {
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(241 245 249)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
         }
-      `}</style>
+      `}</style> */}
     </div>
   )
 }

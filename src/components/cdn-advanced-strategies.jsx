@@ -408,7 +408,7 @@ export default function CdnAdvancedStrategies() {
         </div>
 
         {/* Visual Diagram */}
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-lg p-6 border border-emerald-200 mb-6">
+        <div className=" from-emerald-50 to-blue-50 rounded-lg p-6 border border-emerald-200 mb-6">
           {multiCdnApproach === "failover" && (
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-4">
@@ -564,7 +564,7 @@ export default function CdnAdvancedStrategies() {
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-xl p-6">
+      <div className=" from-orange-50 to-amber-50 border border-orange-200 rounded-xl p-6">
         <h3 className="text-lg font-bold text-orange-900 mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5" />
           Interview Tips: Advanced CDN Strategies

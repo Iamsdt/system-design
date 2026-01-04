@@ -451,7 +451,7 @@ CREATE TABLE sensor_data (
       </div>
 
       {/* Performance Comparison */}
-      <div className="bg-gradient-to-br from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
+      <div className=" from-slate-50 to-gray-50 p-6 rounded-lg border-2 border-gray-200">
         <div className="flex items-center justify-between mb-4">
           <h4 className="text-xl font-bold flex items-center gap-2">
             <Zap className="w-6 h-6 text-amber-500" />
@@ -558,7 +558,7 @@ CREATE TABLE sensor_data (
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
+        <div className=" from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-4xl">{selectedScenarioData.icon}</span>
             <div>
@@ -579,7 +579,7 @@ CREATE TABLE sensor_data (
             </ul>
           </div>
 
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border-2 border-green-200 mb-4">
+          <div className=" from-green-50 to-emerald-50 p-4 rounded-lg border-2 border-green-200 mb-4">
             <h6 className="font-bold mb-2 text-green-800 flex items-center gap-2">
               <CheckCircle className="w-5 h-5" />
               Recommended: {indexTypes[selectedScenarioData.recommended].name}

@@ -46,7 +46,7 @@ export default function CapacityPlanning() {
             </TabsList>
 
             <TabsContent value="linear" className="space-y-4">
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl">
+              <div className=" from-purple-50 to-blue-50 p-6 rounded-xl">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Badge variant="outline">Simple</Badge>
                   Linear Regression
@@ -68,7 +68,7 @@ export default function CapacityPlanning() {
             </TabsContent>
 
             <TabsContent value="seasonal" className="space-y-4">
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl">
+              <div className=" from-purple-50 to-blue-50 p-6 rounded-xl">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Badge variant="outline">Intermediate</Badge>
                   ARIMA / Seasonal Decomposition
@@ -91,7 +91,7 @@ export default function CapacityPlanning() {
             </TabsContent>
 
             <TabsContent value="ml" className="space-y-4">
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl">
+              <div className=" from-purple-50 to-blue-50 p-6 rounded-xl">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Badge variant="outline">Advanced</Badge>
                   ML-Based Forecasting (Prophet, LSTM)
@@ -114,7 +114,7 @@ export default function CapacityPlanning() {
             </TabsContent>
 
             <TabsContent value="quantile" className="space-y-4">
-              <div className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl">
+              <div className=" from-purple-50 to-blue-50 p-6 rounded-xl">
                 <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
                   <Badge variant="outline">Probabilistic</Badge>
                   Quantile Regression
@@ -510,7 +510,7 @@ AutoScalingPolicy:
       </Card>
 
       {/* Tools */}
-      <Card className="bg-gradient-to-br from-purple-900 to-blue-900 text-white border-0">
+      <Card className=" from-purple-900 to-blue-900 text-white border-0">
         <CardHeader>
           <CardTitle className="text-2xl">Capacity Planning Tools</CardTitle>
         </CardHeader>

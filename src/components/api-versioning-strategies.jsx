@@ -345,7 +345,7 @@ app.use((req, res, next) => {
       </div>
 
       {/* Strategy Details */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <div className="flex items-start gap-4 mb-6">
           <div className="text-blue-600 mt-1">{currentStrategy.icon}</div>
           <div>
@@ -415,7 +415,7 @@ app.use((req, res, next) => {
         </div>
 
         {/* Migration Strategy */}
-        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
+        <div className=" from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-200">
           <h5 className="font-bold text-slate-900 mb-4">{currentStrategy.migration.title}</h5>
           
           <div className="space-y-3 mb-4">
@@ -501,7 +501,7 @@ app.use((req, res, next) => {
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

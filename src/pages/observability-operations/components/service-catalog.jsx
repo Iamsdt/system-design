@@ -107,7 +107,7 @@ export default function ServiceCatalog() {
             </TabsList>
 
             <TabsContent value="backstage" className="space-y-4">
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+              <div className=" from-indigo-50 to-purple-50 p-6 rounded-xl">
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="font-bold text-2xl">Backstage.io</h3>
                   <Badge className="bg-green-600">Open Source</Badge>
@@ -156,7 +156,7 @@ export default function ServiceCatalog() {
             </TabsContent>
 
             <TabsContent value="cortex" className="space-y-4">
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+              <div className=" from-indigo-50 to-purple-50 p-6 rounded-xl">
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="font-bold text-2xl">Cortex</h3>
                   <Badge className="bg-blue-600">SaaS</Badge>
@@ -206,7 +206,7 @@ export default function ServiceCatalog() {
             </TabsContent>
 
             <TabsContent value="port" className="space-y-4">
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+              <div className=" from-indigo-50 to-purple-50 p-6 rounded-xl">
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="font-bold text-2xl">Port</h3>
                   <Badge className="bg-blue-600">SaaS</Badge>
@@ -270,7 +270,7 @@ export default function ServiceCatalog() {
             </TabsContent>
 
             <TabsContent value="custom" className="space-y-4">
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+              <div className=" from-indigo-50 to-purple-50 p-6 rounded-xl">
                 <div className="flex items-center gap-3 mb-4">
                   <h3 className="font-bold text-2xl">Custom Solution</h3>
                   <Badge className="bg-purple-600">DIY</Badge>
@@ -544,7 +544,7 @@ export default function ServiceCatalog() {
       </Card>
 
       {/* Best Practices */}
-      <Card className="bg-gradient-to-br from-indigo-900 to-purple-900 text-white border-0">
+      <Card className=" from-indigo-900 to-purple-900 text-white border-0">
         <CardHeader>
           <CardTitle className="text-2xl">Service Catalog Best Practices</CardTitle>
         </CardHeader>

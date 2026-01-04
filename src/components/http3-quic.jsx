@@ -252,7 +252,7 @@ export default function Http3Quic() {
         </div>
 
         {/* Selected Version Details */}
-        <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-6 border border-slate-200">
+        <div className=" from-slate-50 to-blue-50 rounded-lg p-6 border border-slate-200">
           <div className="flex items-center justify-between mb-4">
             <h4 className="text-2xl font-bold text-slate-900">{httpVersions[selectedVersion].name}</h4>
             <span className="text-sm font-medium text-slate-600 bg-white px-3 py-1 rounded-full">
@@ -344,7 +344,7 @@ export default function Http3Quic() {
                   <p className="text-xs font-medium text-purple-900 mb-1">How it works:</p>
                   <p className="text-xs text-slate-600">{feature.detail}</p>
                 </div>
-                <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded p-3">
+                <div className=" from-purple-100 to-blue-100 rounded p-3">
                   <p className="text-xs font-medium text-purple-900 mb-1">Real-world example:</p>
                   <p className="text-xs text-slate-700">{feature.example}</p>
                 </div>
@@ -440,7 +440,7 @@ export default function Http3Quic() {
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-xl p-6">
+      <div className=" from-purple-50 to-indigo-50 border border-purple-200 rounded-xl p-6">
         <h3 className="text-lg font-bold text-purple-900 mb-4 flex items-center gap-2">
           <Server className="w-5 h-5" />
           Interview Tips: HTTP/3 & QUIC

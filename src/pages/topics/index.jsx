@@ -379,7 +379,7 @@ export default function Topics() {
       </section>
 
       {/* Topics Grid */}
-      <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16  from-slate-50 to-blue-50">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -575,7 +575,7 @@ export default function Topics() {
       </section>
 
       {/* Learning Path */}
-      <section className="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <section className="py-16  from-indigo-50 to-purple-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">

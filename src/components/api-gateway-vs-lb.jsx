@@ -1,4 +1,3 @@
-import { useState } from "react"
 import {
   Server,
   Shield,
@@ -12,7 +11,11 @@ import {
   Cloud,
   Settings,
 } from "lucide-react"
+import { useState } from "react"
 
+/**
+ *
+ */
 export default function ApiGatewayVsLoadBalancer() {
   const [selectedFeature, setSelectedFeature] = useState(null)
   const [showArchitecture, setShowArchitecture] = useState(false)
@@ -26,13 +29,37 @@ export default function ApiGatewayVsLoadBalancer() {
       purpose: "Intelligent request routing, transformation, and management",
       when: "When you need API-specific features like authentication, rate limiting, request transformation",
       features: [
-        { name: "Request/Response Transformation", has: true, desc: "Modify headers, body, format" },
-        { name: "Authentication & Authorization", has: true, desc: "OAuth, JWT, API keys" },
-        { name: "Rate Limiting & Throttling", has: true, desc: "Per-user, per-API limits" },
-        { name: "API Versioning", has: true, desc: "Route to different versions" },
+        {
+          name: "Request/Response Transformation",
+          has: true,
+          desc: "Modify headers, body, format",
+        },
+        {
+          name: "Authentication & Authorization",
+          has: true,
+          desc: "OAuth, JWT, API keys",
+        },
+        {
+          name: "Rate Limiting & Throttling",
+          has: true,
+          desc: "Per-user, per-API limits",
+        },
+        {
+          name: "API Versioning",
+          has: true,
+          desc: "Route to different versions",
+        },
         { name: "Request Validation", has: true, desc: "Schema validation" },
-        { name: "Protocol Translation", has: true, desc: "REST → gRPC, HTTP → WebSocket" },
-        { name: "Analytics & Monitoring", has: true, desc: "Detailed API metrics" },
+        {
+          name: "Protocol Translation",
+          has: true,
+          desc: "REST → gRPC, HTTP → WebSocket",
+        },
+        {
+          name: "Analytics & Monitoring",
+          has: true,
+          desc: "Detailed API metrics",
+        },
         { name: "Caching", has: true, desc: "Response caching" },
         { name: "Health Checks", has: true, desc: "Basic health monitoring" },
         { name: "SSL Termination", has: true, desc: "Handles TLS" },
@@ -56,26 +83,63 @@ export default function ApiGatewayVsLoadBalancer() {
       name: "Load Balancer",
       icon: Server,
       color: "blue",
-      tagline: "Transport/Network Layer (Layer 4) or Application Layer (Layer 7)",
+      tagline:
+        "Transport/Network Layer (Layer 4) or Application Layer (Layer 7)",
       purpose: "Distribute traffic efficiently across multiple servers",
       when: "When you need high-performance traffic distribution without API-specific logic",
       features: [
-        { name: "Request/Response Transformation", has: false, desc: "Not a primary feature" },
-        { name: "Authentication & Authorization", has: false, desc: "Not handled" },
-        { name: "Rate Limiting & Throttling", has: false, desc: "Basic at best" },
+        {
+          name: "Request/Response Transformation",
+          has: false,
+          desc: "Not a primary feature",
+        },
+        {
+          name: "Authentication & Authorization",
+          has: false,
+          desc: "Not handled",
+        },
+        {
+          name: "Rate Limiting & Throttling",
+          has: false,
+          desc: "Basic at best",
+        },
         { name: "API Versioning", has: false, desc: "Not API-aware" },
         { name: "Request Validation", has: false, desc: "No validation" },
-        { name: "Protocol Translation", has: false, desc: "Typically not supported" },
-        { name: "Analytics & Monitoring", has: true, desc: "Connection & traffic metrics" },
+        {
+          name: "Protocol Translation",
+          has: false,
+          desc: "Typically not supported",
+        },
+        {
+          name: "Analytics & Monitoring",
+          has: true,
+          desc: "Connection & traffic metrics",
+        },
         { name: "Caching", has: false, desc: "Not a focus" },
-        { name: "Health Checks", has: true, desc: "Advanced health monitoring" },
+        {
+          name: "Health Checks",
+          has: true,
+          desc: "Advanced health monitoring",
+        },
         { name: "SSL Termination", has: true, desc: "Excellent TLS support" },
       ],
       additional: [
-        { name: "Traffic Distribution", has: true, desc: "Round-robin, least connections, IP hash" },
+        {
+          name: "Traffic Distribution",
+          has: true,
+          desc: "Round-robin, least connections, IP hash",
+        },
         { name: "Session Persistence", has: true, desc: "Sticky sessions" },
-        { name: "Connection Pooling", has: true, desc: "Efficient connection reuse" },
-        { name: "DDoS Protection", has: true, desc: "Rate limiting at network layer" },
+        {
+          name: "Connection Pooling",
+          has: true,
+          desc: "Efficient connection reuse",
+        },
+        {
+          name: "DDoS Protection",
+          has: true,
+          desc: "Rate limiting at network layer",
+        },
       ],
       tools: [
         { name: "NGINX", desc: "High-performance, widely used" },
@@ -117,7 +181,11 @@ export default function ApiGatewayVsLoadBalancer() {
         "Good for smaller applications",
         "Lower latency (one less hop)",
       ],
-      tradeoffs: ["May not scale as well", "Gateway becomes a bottleneck", "Less specialized load balancing"],
+      tradeoffs: [
+        "May not scale as well",
+        "Gateway becomes a bottleneck",
+        "Less specialized load balancing",
+      ],
       example: "Client → AWS API Gateway → Lambda Functions",
     },
     lbOnly: {
@@ -150,8 +218,12 @@ export default function ApiGatewayVsLoadBalancer() {
               <Cloud className="w-8 h-8 text-emerald-600" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-slate-900">{features.gateway.name}</h3>
-              <p className="text-sm text-emerald-600 font-medium">{features.gateway.tagline}</p>
+              <h3 className="text-xl font-bold text-slate-900">
+                {features.gateway.name}
+              </h3>
+              <p className="text-sm text-emerald-600 font-medium">
+                {features.gateway.tagline}
+              </p>
             </div>
           </div>
           <p className="text-slate-700 mb-4">{features.gateway.purpose}</p>
@@ -170,7 +242,9 @@ export default function ApiGatewayVsLoadBalancer() {
                   <XCircle className="w-4 h-4 text-slate-300 flex-shrink-0 mt-0.5" />
                 )}
                 <div className="flex-1">
-                  <span className={`text-sm ${feature.has ? "text-slate-900 font-medium" : "text-slate-400"}`}>
+                  <span
+                    className={`text-sm ${feature.has ? "text-slate-900 font-medium" : "text-slate-400"}`}
+                  >
                     {feature.name}
                   </span>
                 </div>
@@ -178,10 +252,15 @@ export default function ApiGatewayVsLoadBalancer() {
             ))}
           </div>
 
-          <h4 className="font-semibold text-slate-900 mb-2 text-sm">Popular Tools:</h4>
+          <h4 className="font-semibold text-slate-900 mb-2 text-sm">
+            Popular Tools:
+          </h4>
           <div className="flex flex-wrap gap-2">
             {features.gateway.tools.map((tool, index) => (
-              <span key={index} className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded">
+              <span
+                key={index}
+                className="text-xs px-2 py-1 bg-emerald-100 text-emerald-700 rounded"
+              >
                 {tool.name}
               </span>
             ))}
@@ -195,38 +274,53 @@ export default function ApiGatewayVsLoadBalancer() {
               <Server className="w-8 h-8 text-blue-600" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-slate-900">{features.loadbalancer.name}</h3>
-              <p className="text-sm text-blue-600 font-medium">{features.loadbalancer.tagline}</p>
+              <h3 className="text-xl font-bold text-slate-900">
+                {features.loadbalancer.name}
+              </h3>
+              <p className="text-sm text-blue-600 font-medium">
+                {features.loadbalancer.tagline}
+              </p>
             </div>
           </div>
           <p className="text-slate-700 mb-4">{features.loadbalancer.purpose}</p>
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
             <p className="text-sm font-medium text-blue-900">When to use:</p>
-            <p className="text-sm text-slate-700">{features.loadbalancer.when}</p>
+            <p className="text-sm text-slate-700">
+              {features.loadbalancer.when}
+            </p>
           </div>
 
           <h4 className="font-semibold text-slate-900 mb-3">Key Features:</h4>
           <div className="space-y-2 mb-4">
-            {features.loadbalancer.features.slice(0, 8).map((feature, index) => (
-              <div key={index} className="flex items-start gap-2">
-                {feature.has ? (
-                  <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                ) : (
-                  <XCircle className="w-4 h-4 text-slate-300 flex-shrink-0 mt-0.5" />
-                )}
-                <div className="flex-1">
-                  <span className={`text-sm ${feature.has ? "text-slate-900 font-medium" : "text-slate-400"}`}>
-                    {feature.name}
-                  </span>
+            {features.loadbalancer.features
+              .slice(0, 8)
+              .map((feature, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  {feature.has ? (
+                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                  ) : (
+                    <XCircle className="w-4 h-4 text-slate-300 flex-shrink-0 mt-0.5" />
+                  )}
+                  <div className="flex-1">
+                    <span
+                      className={`text-sm ${feature.has ? "text-slate-900 font-medium" : "text-slate-400"}`}
+                    >
+                      {feature.name}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
 
-          <h4 className="font-semibold text-slate-900 mb-2 text-sm">Popular Tools:</h4>
+          <h4 className="font-semibold text-slate-900 mb-2 text-sm">
+            Popular Tools:
+          </h4>
           <div className="flex flex-wrap gap-2">
             {features.loadbalancer.tools.map((tool, index) => (
-              <span key={index} className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded">
+              <span
+                key={index}
+                className="text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded"
+              >
                 {tool.name}
               </span>
             ))}
@@ -236,14 +330,22 @@ export default function ApiGatewayVsLoadBalancer() {
 
       {/* Detailed Feature Comparison Table */}
       <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h3 className="text-xl font-bold text-slate-900 mb-6">Detailed Feature Comparison</h3>
+        <h3 className="text-xl font-bold text-slate-900 mb-6">
+          Detailed Feature Comparison
+        </h3>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b-2 border-slate-200">
-                <th className="text-left py-3 px-4 font-semibold text-slate-700">Feature</th>
-                <th className="text-center py-3 px-4 font-semibold text-emerald-700">API Gateway</th>
-                <th className="text-center py-3 px-4 font-semibold text-blue-700">Load Balancer</th>
+                <th className="text-left py-3 px-4 font-semibold text-slate-700">
+                  Feature
+                </th>
+                <th className="text-center py-3 px-4 font-semibold text-emerald-700">
+                  API Gateway
+                </th>
+                <th className="text-center py-3 px-4 font-semibold text-blue-700">
+                  Load Balancer
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -273,8 +375,12 @@ export default function ApiGatewayVsLoadBalancer() {
 
       {/* Architecture Patterns */}
       <div className="bg-white rounded-xl border border-slate-200 p-6">
-        <h3 className="text-xl font-bold text-slate-900 mb-2">Can They Coexist?</h3>
-        <p className="text-slate-600 mb-6">Yes! Here are three common architecture patterns:</p>
+        <h3 className="text-xl font-bold text-slate-900 mb-2">
+          Can They Coexist?
+        </h3>
+        <p className="text-slate-600 mb-6">
+          Yes! Here are three common architecture patterns:
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {Object.entries(architectureData).map(([key, arch]) => (
@@ -287,7 +393,9 @@ export default function ApiGatewayVsLoadBalancer() {
                   : "border-slate-200 hover:border-indigo-300"
               }`}
             >
-              <h4 className="font-semibold text-slate-900 mb-1">{arch.title}</h4>
+              <h4 className="font-semibold text-slate-900 mb-1">
+                {arch.title}
+              </h4>
               <p className="text-sm text-slate-600">{arch.desc}</p>
             </button>
           ))}
@@ -306,7 +414,8 @@ export default function ApiGatewayVsLoadBalancer() {
                   <div className="px-4 py-2 rounded-lg bg-indigo-100 text-indigo-900 font-medium text-sm whitespace-nowrap">
                     {step}
                   </div>
-                  {index < architectureData[showArchitecture].diagram.length - 1 && (
+                  {index <
+                    architectureData[showArchitecture].diagram.length - 1 && (
                     <ArrowRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
                   )}
                 </div>
@@ -320,12 +429,17 @@ export default function ApiGatewayVsLoadBalancer() {
                 Benefits:
               </h5>
               <ul className="space-y-1">
-                {architectureData[showArchitecture].benefits.map((benefit, index) => (
-                  <li key={index} className="text-sm text-slate-700 flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
-                    {benefit}
-                  </li>
-                ))}
+                {architectureData[showArchitecture].benefits.map(
+                  (benefit, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-slate-700 flex items-start gap-2"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 flex-shrink-0" />
+                      {benefit}
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
@@ -337,34 +451,45 @@ export default function ApiGatewayVsLoadBalancer() {
                   Trade-offs:
                 </h5>
                 <ul className="space-y-1">
-                  {architectureData[showArchitecture].tradeoffs.map((tradeoff, index) => (
-                    <li key={index} className="text-sm text-slate-700 flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
-                      {tradeoff}
-                    </li>
-                  ))}
+                  {architectureData[showArchitecture].tradeoffs.map(
+                    (tradeoff, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-slate-700 flex items-start gap-2"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
+                        {tradeoff}
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
             )}
 
             {/* Example */}
             <div className="bg-white border border-slate-200 rounded-lg p-4">
-              <p className="text-sm font-medium text-slate-900 mb-1">Real-World Example:</p>
-              <p className="text-sm text-slate-600 font-mono">{architectureData[showArchitecture].example}</p>
+              <p className="text-sm font-medium text-slate-900 mb-1">
+                Real-World Example:
+              </p>
+              <p className="text-sm text-slate-600 font-mono">
+                {architectureData[showArchitecture].example}
+              </p>
             </div>
           </div>
         )}
       </div>
 
       {/* Decision Guide */}
-      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl p-6">
+      <div className="border border-indigo-200 rounded-xl p-6">
         <h3 className="text-lg font-bold text-indigo-900 mb-4 flex items-center gap-2">
           <GitBranch className="w-5 h-5" />
           Decision Guide: Which Should You Use?
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold text-emerald-900 mb-3">Choose API Gateway when:</h4>
+            <h4 className="font-semibold text-emerald-900 mb-3">
+              Choose API Gateway when:
+            </h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-slate-700">
                 <CheckCircle className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
@@ -389,7 +514,9 @@ export default function ApiGatewayVsLoadBalancer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-blue-900 mb-3">Choose Load Balancer when:</h4>
+            <h4 className="font-semibold text-blue-900 mb-3">
+              Choose Load Balancer when:
+            </h4>
             <ul className="space-y-2">
               <li className="flex items-start gap-2 text-sm text-slate-700">
                 <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
@@ -416,9 +543,10 @@ export default function ApiGatewayVsLoadBalancer() {
         </div>
         <div className="mt-6 p-4 bg-white rounded-lg border border-indigo-200">
           <p className="text-sm text-slate-700">
-            <strong className="text-indigo-900">Pro Tip:</strong> In production, use both! API Gateway for intelligent
-            routing and API management, Load Balancer for efficient traffic distribution. Example: AWS API Gateway →
-            ALB → EC2 instances or ECS containers.
+            <strong className="text-indigo-900">Pro Tip:</strong> In production,
+            use both! API Gateway for intelligent routing and API management,
+            Load Balancer for efficient traffic distribution. Example: AWS API
+            Gateway → ALB → EC2 instances or ECS containers.
           </p>
         </div>
       </div>

@@ -52,7 +52,7 @@ export default function EventSourcing() {
       </div>
 
       {/* Traditional vs Event Sourcing */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-2xl p-8 border-2 border-blue-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6">Traditional vs Event Sourcing</h4>
         
         <div className="flex gap-4 mb-6">
@@ -221,7 +221,7 @@ for (const e of events) {
       </div>
 
       {/* Interactive Event Replay */}
-      <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
+      <div className=" from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200">
         <h4 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
           <PlayCircle className="w-6 h-6 text-purple-600" />
           Interactive: Time Travel with Event Replay
@@ -252,7 +252,7 @@ for (const e of events) {
 
           {/* Current State Display */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border-2 border-green-200">
+            <div className=" from-green-50 to-emerald-50 rounded-lg p-6 border-2 border-green-200">
               <div className="text-sm text-slate-600 mb-2">Current Balance</div>
               <div className="text-4xl font-bold text-green-700">${currentState.balance}</div>
               <div className="text-xs text-slate-500 mt-2">{currentState.transactions} transactions processed</div>
@@ -286,9 +286,9 @@ for (const e of events) {
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
                   idx === selectedEvent
-                    ? 'bg-purple-500 text-white'
+                    ? 'bg-purple-500'
                     : idx < selectedEvent
-                    ? 'bg-blue-500 text-white'
+                    ? 'bg-blue-500'
                     : 'bg-slate-300 text-slate-500'
                 }`}>
                   {event.id}
@@ -529,7 +529,7 @@ type AccountEvent =
       </div>
 
       {/* When to Use */}
-      <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
+      <div className=" from-amber-50 to-orange-50 rounded-xl p-6 border-2 border-amber-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">When to Use Event Sourcing</h4>
         
         <div className="grid md:grid-cols-2 gap-6">
@@ -588,7 +588,7 @@ type AccountEvent =
       </div>
 
       {/* Real-World Examples */}
-      <div className="bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
+      <div className=" from-slate-50 to-slate-100 rounded-xl p-6 border-2 border-slate-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4">Real-World Implementations</h4>
         
         <div className="space-y-3">
@@ -619,7 +619,7 @@ type AccountEvent =
       </div>
 
       {/* Interview Tips */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
+      <div className=" from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200">
         <h4 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
           <span>💡</span>
           Interview Tips

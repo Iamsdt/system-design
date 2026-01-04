@@ -178,7 +178,7 @@ export default function CAPDecisionTree() {
             </div>
             <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-purple-500 to-indigo-500 transition-all duration-500"
+                className="h-full  from-purple-500 to-indigo-500 transition-all duration-500"
                 style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
               />
             </div>
@@ -363,7 +363,7 @@ export default function CAPDecisionTree() {
             {/* Reset Button */}
             <button
               onClick={reset}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all"
+              className="w-full py-3 rounded-xl  from-purple-600 to-indigo-600 text-white font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all"
             >
               Start Over
             </button>
