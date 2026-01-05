@@ -48,7 +48,7 @@ export default function Landing() {
             {/* Main Heading */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-6 leading-[1.1] tracking-tight">
               Master System Design &<br />
-              <span className="text-transparent bg-clip-text  from-blue-600 to-indigo-600">
+              <span className="bg-clip-text  from-blue-600 to-indigo-600">
                 Cloud Architecture
               </span>
             </h1>
