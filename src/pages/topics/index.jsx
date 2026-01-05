@@ -1,20 +1,20 @@
-import { useEffect, useRef } from "react"
-import { useNavigate } from "react-router-dom"
-import { 
-  Calculator, 
-  Globe, 
-  Database, 
-  Server, 
-  Zap, 
-  Shield, 
-  Lock, 
-  Activity, 
-  Cloud, 
+import {
+  Calculator,
+  Globe,
+  Database,
+  Server,
+  Zap,
+  Shield,
+  Lock,
+  Activity,
+  Cloud,
   BookOpen,
   BarChart,
   Rocket,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react"
+import { useEffect, useRef } from "react"
+import { useNavigate } from "react-router-dom"
 
 /**
  * Topics page component - System Design & Cloud Engineering Essentials
@@ -52,7 +52,8 @@ export default function Topics() {
       title: "Core Principles & Sizing",
       color: "blue",
       icon: <Calculator className="w-8 h-8" />,
-      description: "Interview flow, performance vs scalability, back-of-envelope estimates, and scaling strategies",
+      description:
+        "Interview flow, performance vs scalability, back-of-envelope estimates, and scaling strategies",
       keyPoints: [
         "Interview flow & requirements mapping",
         "Performance vs scalability",
@@ -92,7 +93,8 @@ export default function Topics() {
       title: "Data Architecture & Storage",
       color: "purple",
       icon: <Database className="w-8 h-8" />,
-      description: "Database selection, storage models, replication, sharding, and caching",
+      description:
+        "Database selection, storage models, replication, sharding, and caching",
       keyPoints: [
         "SQL vs NoSQL selection",
         "Storage models (KV, document, graph)",
@@ -112,7 +114,8 @@ export default function Topics() {
       title: "Compute & Runtime Models",
       color: "amber",
       icon: <Server className="w-8 h-8" />,
-      description: "Containers, serverless, Kubernetes, and deployment strategies",
+      description:
+        "Containers, serverless, Kubernetes, and deployment strategies",
       keyPoints: [
         "Runtime choices (VM/container/function)",
         "Monolith vs microservices",
@@ -132,7 +135,8 @@ export default function Topics() {
       title: "APIs, Integration & Data Movement",
       color: "teal",
       icon: <Zap className="w-8 h-8" />,
-      description: "REST/gRPC/GraphQL, API gateways, messaging, and real-time communication",
+      description:
+        "REST/gRPC/GraphQL, API gateways, messaging, and real-time communication",
       keyPoints: [
         "REST vs gRPC vs GraphQL",
         "API Gateway patterns",
@@ -152,7 +156,8 @@ export default function Topics() {
       title: "Reliability & Resilience",
       color: "red",
       icon: <Shield className="w-8 h-8" />,
-      description: "SLOs, error budgets, graceful degradation, circuit breakers, and disaster recovery",
+      description:
+        "SLOs, error budgets, graceful degradation, circuit breakers, and disaster recovery",
       keyPoints: [
         "SLO-driven design",
         "Graceful degradation",
@@ -173,7 +178,8 @@ export default function Topics() {
       title: "Security, Governance & Compliance",
       color: "green",
       icon: <Lock className="w-8 h-8" />,
-      description: "AuthN/AuthZ, network security, secrets management, and zero-trust",
+      description:
+        "AuthN/AuthZ, network security, secrets management, and zero-trust",
       keyPoints: [
         "OAuth2/OIDC/JWT",
         "mTLS & key management",
@@ -194,7 +200,8 @@ export default function Topics() {
       title: "Observability & Operations",
       color: "cyan",
       icon: <Activity className="w-8 h-8" />,
-      description: "Metrics, logs, traces, dashboards, alerts, and incident response",
+      description:
+        "Metrics, logs, traces, dashboards, alerts, and incident response",
       keyPoints: [
         "Metrics/logs/traces",
         "OpenTelemetry",
@@ -235,7 +242,8 @@ export default function Topics() {
       title: "Real-World Case Studies",
       color: "emerald",
       icon: <BookOpen className="w-8 h-8" />,
-      description: "Learning from Netflix, Uber, Discord, WhatsApp, and Twitter",
+      description:
+        "Learning from Netflix, Uber, Discord, WhatsApp, and Twitter",
       keyPoints: [
         "Netflix: Chaos Engineering",
         "Uber: Geospatial Scaling (H3)",
@@ -354,16 +362,18 @@ export default function Topics() {
 
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">
               System Design &{" "}
-              <span className="text-gradient">Cloud Engineering</span> Essentials
+              <span className="text-gradient">Cloud Engineering</span>{" "}
+              Essentials
             </h1>
 
             <p className="text-lg md:text-xl text-slate-600 mb-8 mx-auto leading-relaxed">
               A comprehensive guide to system design and cloud fundamentals.
               Learn to pick the right data/compute patterns and compare managed
-              cloud options through interactive tutorials and real-world examples.
+              cloud options through interactive tutorials and real-world
+              examples.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 my-5">
               <button onClick={() => nav("/")} className="btn-secondary">
                 Back to Home
               </button>
@@ -385,7 +395,7 @@ export default function Topics() {
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               All Topics Covered
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-600 mx-auto">
               Explore 10 comprehensive modules covering everything from core
               principles to advanced cloud engineering practices
             </p>
@@ -410,38 +420,39 @@ export default function Topics() {
               return (
                 <div
                   key={topic.id}
-                  ref={(el) => (sectionsReference.current[index] = el)}
+                  ref={(element) =>
+                    (sectionsReference.current[index] = element)
+                  }
                   onClick={topicRoute ? () => nav(topicRoute) : undefined}
-                  className={`transition-all duration-700 bg-white border-2 ${colors.border} rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${colors.hover} flex flex-col ${topicRoute ? "cursor-pointer" : ""}`}
+                  className={`transition-all duration-700 bg-white border-2 ${colors.border} rounded-2xl p-6 md:p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${colors.hover} flex flex-col ${topicRoute ? "cursor-pointer" : ""}`}
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <div
-                      className={`w-14 h-14 rounded-xl ${colors.badge} text-white flex items-center justify-center font-bold text-lg flex-shrink-0`}
+                      className={`w-14 h-14 rounded-xl ${colors.badge} flex items-center justify-center font-bold text-lg flex-shrink-0`}
                     >
-                      {topic.number}
+                      <span className={`${colors.text}`}>{topic.icon}</span>
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className={`${colors.text}`}>{topic.icon}</span>
                         <h3 className="text-xl font-bold text-slate-900">
-                          {topic.title}
+                          {topic.number}. {topic.title}
                         </h3>
                       </div>
-                      <p className="text-sm text-slate-600 leading-relaxed">
-                        {topic.description}
-                      </p>
                     </div>
                   </div>
+                  <p className="text-sm text-slate-600 my-2">
+                    {topic.description}
+                  </p>
 
-                  <div className="mb-6 flex-1">
+                  <div className="mb-6 flex-1 my-5">
                     <div className="mb-4">
                       <h4 className="text-sm font-semibold text-slate-900 mb-2">
                         Key Topics:
                       </h4>
-                      <ul className="space-y-1">
-                        {topic.keyPoints.map((point, idx) => (
+                      <ul className="space-y-1 my-2">
+                        {topic.keyPoints.map((point, index_) => (
                           <li
-                            key={idx}
+                            key={index_}
                             className="text-xs text-slate-700 flex items-start gap-2"
                           >
                             <span className={`${colors.text} mt-1`}>•</span>
@@ -455,10 +466,10 @@ export default function Topics() {
                       <h4 className="text-sm font-semibold text-slate-900 mb-2">
                         Interactive Demos:
                       </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {topic.demos.map((demo, idx) => (
+                      <div className="flex flex-wrap gap-2 my-2">
+                        {topic.demos.map((demo, index_) => (
                           <span
-                            key={idx}
+                            key={index_}
                             className={`text-xs px-2 py-1 rounded-md ${colors.bg} ${colors.text} border ${colors.border}`}
                           >
                             {demo}
@@ -501,7 +512,7 @@ export default function Topics() {
       </section>
 
       {/* Interactive Demos Overview */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -572,10 +583,10 @@ export default function Topics() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Learning Path */}
-      <section className="py-16  from-indigo-50 to-purple-50">
+      {/* <section className="py-16  from-indigo-50 to-purple-50">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
@@ -588,16 +599,56 @@ export default function Topics() {
 
           <div className="space-y-4">
             {[
-              { step: 1, topic: "Core Principles & Sizing", link: "/foundations" },
-              { step: 2, topic: "Networking & Edge Delivery", link: "/networking" },
-              { step: 3, topic: "Data Architecture & Storage", link: "/data-architecture" },
-              { step: 4, topic: "Compute & Runtime Models", link: "/compute-runtime" },
-              { step: 5, topic: "APIs, Integration & Data Movement", link: "/apis-integration" },
-              { step: 6, topic: "Reliability & Resilience", link: "/reliability-resilience" },
-              { step: 7, topic: "Security & Governance", link: "/security-governance" },
-              { step: 8, topic: "Observability & Operations", link: "/observability-operations" },
-              { step: 9, topic: "Cloud Comparisons", link: "/cloud-comparisons" },
-              { step: 10, topic: "Real-World Case Studies", link: "/case-studies" },
+              {
+                step: 1,
+                topic: "Core Principles & Sizing",
+                link: "/foundations",
+              },
+              {
+                step: 2,
+                topic: "Networking & Edge Delivery",
+                link: "/networking",
+              },
+              {
+                step: 3,
+                topic: "Data Architecture & Storage",
+                link: "/data-architecture",
+              },
+              {
+                step: 4,
+                topic: "Compute & Runtime Models",
+                link: "/compute-runtime",
+              },
+              {
+                step: 5,
+                topic: "APIs, Integration & Data Movement",
+                link: "/apis-integration",
+              },
+              {
+                step: 6,
+                topic: "Reliability & Resilience",
+                link: "/reliability-resilience",
+              },
+              {
+                step: 7,
+                topic: "Security & Governance",
+                link: "/security-governance",
+              },
+              {
+                step: 8,
+                topic: "Observability & Operations",
+                link: "/observability-operations",
+              },
+              {
+                step: 9,
+                topic: "Cloud Comparisons",
+                link: "/cloud-comparisons",
+              },
+              {
+                step: 10,
+                topic: "Real-World Case Studies",
+                link: "/case-studies",
+              },
             ].map((item, index) => (
               <div
                 key={index}
@@ -629,7 +680,7 @@ export default function Topics() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Navigation */}
       <section className="py-6 bg-white">
@@ -639,7 +690,10 @@ export default function Topics() {
               ← Back to Home
             </button>
             <div className="flex items-center gap-3">
-              <button onClick={() => nav("/foundations")} className="btn-primary">
+              <button
+                onClick={() => nav("/foundations")}
+                className="btn-primary"
+              >
                 Start Learning →
               </button>
             </div>
@@ -649,4 +703,3 @@ export default function Topics() {
     </div>
   )
 }
-

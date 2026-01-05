@@ -1,9 +1,10 @@
-import { useNavigate } from "react-router-dom"
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
 import { Database, ArrowLeft } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import { useNavigate } from "react-router-dom"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { oneLight } from "react-syntax-highlighter/dist/esm/styles/prism"
+import remarkGfm from "remark-gfm"
+
 import pgsqlRaw from "../../../pgsql.md?raw"
 
 /**
@@ -30,11 +31,12 @@ export default function PostgreSQLCheatSheet() {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-600 mb-8 mx-auto">
-              Complete reference for PostgreSQL commands, functions, and best practices.
-              From basic queries to advanced features like window functions and partitioning.
+              Complete reference for PostgreSQL commands, functions, and best
+              practices. From basic queries to advanced features like window
+              functions and partitioning.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 my-5">
               <button
                 onClick={() => nav("/cheat-sheets")}
                 className="btn-secondary inline-flex items-center gap-2"
@@ -42,10 +44,7 @@ export default function PostgreSQLCheatSheet() {
                 <ArrowLeft className="w-4 h-4" />
                 Back to Cheat Sheets
               </button>
-              <button
-                onClick={() => nav("/")}
-                className="btn-tertiary"
-              >
+              <button onClick={() => nav("/")} className="btn-tertiary">
                 Home
               </button>
             </div>
@@ -56,7 +55,8 @@ export default function PostgreSQLCheatSheet() {
       {/* Content Section */}
       <div className="container mx-auto px-4 py-16 max-w-6xl">
         <div className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
-          <div className="prose prose-slate max-w-none 
+          <div
+            className="prose prose-slate max-w-none 
             prose-headings:font-bold prose-headings:text-slate-900 prose-headings:mb-4 prose-headings:mt-8
             prose-h1:text-3xl prose-h1:mb-6 prose-h1:border-b prose-h1:border-slate-200 prose-h1:pb-4
             prose-h2:text-2xl prose-h2:mb-4 prose-h2:mt-8 prose-h2:text-slate-800
@@ -75,8 +75,9 @@ export default function PostgreSQLCheatSheet() {
             prose-th:bg-slate-100 prose-th:border prose-th:border-slate-300 prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:font-semibold prose-th:text-slate-900
             prose-td:border prose-td:border-slate-300 prose-td:px-4 prose-td:py-3 prose-td:text-slate-700
             prose-tr:hover:bg-slate-50
-          ">
-            <ReactMarkdown 
+          "
+          >
+            <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
                 table: ({ children }) => (
@@ -111,12 +112,12 @@ export default function PostgreSQLCheatSheet() {
                     {children}
                   </td>
                 ),
-                code: ({ inline, className, children, ...props }) => {
-                  const match = /language-(\w+)/.exec(className || '')
-                  
+                code: ({ inline, className, children, ...properties }) => {
+                  const match = /language-(\w+)/.exec(className || "")
+
                   // If it's a code block (not inline), use syntax highlighter
                   if (!inline) {
-                    const language = match ? match[1] : 'sql'
+                    const language = match ? match[1] : "sql"
                     return (
                       <div className="my-4 rounded-lg overflow-hidden border border-slate-200 shadow-sm">
                         <SyntaxHighlighter
@@ -124,22 +125,25 @@ export default function PostgreSQLCheatSheet() {
                           style={oneLight}
                           customStyle={{
                             margin: 0,
-                            padding: '1rem',
-                            fontSize: '0.875rem',
-                            lineHeight: '1.5',
-                            background: '#f8fafc',
+                            padding: "1rem",
+                            fontSize: "0.875rem",
+                            lineHeight: "1.5",
+                            background: "#f8fafc",
                           }}
-                          {...props}
+                          {...properties}
                         >
-                          {String(children).replace(/\n$/, '')}
+                          {String(children).replace(/\n$/, "")}
                         </SyntaxHighlighter>
                       </div>
                     )
                   }
-                  
+
                   // Inline code
                   return (
-                    <code className="bg-slate-100 text-blue-700 px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
+                    <code
+                      className="bg-slate-100 text-blue-700 px-1.5 py-0.5 rounded text-sm font-mono"
+                      {...properties}
+                    >
                       {children}
                     </code>
                   )
@@ -186,4 +190,3 @@ export default function PostgreSQLCheatSheet() {
     </div>
   )
 }
-
